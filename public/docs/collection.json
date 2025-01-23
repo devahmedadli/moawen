@@ -1,0 +1,1515 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost"
+        }
+    ],
+    "info": {
+        "name": "Moawin",
+        "_postman_id": "c4856654-7851-4406-8416-8e7f30c83317",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Admin Category Management",
+            "description": "\nAPIs for managing categories in the admin panel",
+            "item": [
+                {
+                    "name": "Display a listing of categories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/categories"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Get a list of all categories in the system.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": true,\n    \"message\": \"\u062a\u0645 \u062c\u0644\u0628 \u0627\u0644\u0627\u0642\u0633\u0627\u0645 \u0628\u0646\u062c\u0627\u062d\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"\u0627\u0644\u0628\u0631\u0645\u062c\u0629 \u0648\u0627\u0644\u062a\u0637\u0648\u064a\u0631\",\n            \"created_at\": \"2024-01-01T12:00:00.000000Z\",\n            \"updated_at\": \"2024-01-01T12:00:00.000000Z\"\n        }\n    ]\n}",
+                            "name": "Success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created category",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/categories"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"\u0627\u0644\u0628\u0631\u0645\u062c\u0629 \u0648\u0627\u0644\u062a\u0637\u0648\u064a\u0631\",\"slug\":\"xsiaox\",\"description\":\"Consequatur dolor tenetur iusto quia.\",\"icon\":\"zwgoicdwscxgxc\"}"
+                        },
+                        "description": "Create a new category in the system.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified category",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/categories\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/categories\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the category."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Get the details of a specific category.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":200,\"message\":\"\\u062a\\u0645 \\u062c\\u0644\\u0628 \\u0627\\u0644\\u0642\\u0633\\u0645 \\u0628\\u0646\\u062c\\u0627\\u062d\",\"data\":{\"id\":1,\"name\":\"\\u062a\\u062d\\u0644\\u064a\\u0644 \\u0648\\u062f\\u0631\\u0627\\u0633\\u0629\",\"slug\":\"quam-quae-est-quo-hic-aut-iure-cum\",\"icon\":\"<svg width=\\\"31\\\" height=\\\"37\\\" viewBox=\\\"0 0 31 37\\\" fill=\\\"none\\\" xmlns=\\\"http:\\\/\\\/www.w3.org\\\/2000\\\/svg\\\">\\n<path d=\\\"M15.2879 14.4799C16.1728 14.4809 17.0384 13.9566 17.4571 13.1789C17.8164 12.4818 16.7894 11.9294 16.4062 12.6133C15.9884 13.4319 14.7454 13.5076 14.2318 12.7487C13.7775 12.1159 12.8098 12.8031 13.2602 13.4408C13.7175 14.0823 14.5009 14.4799 15.2879 14.4799Z\\\" fill=\\\"white\\\"\\\/>\\n<path d=\\\"M27.7755 17.0916C27.5626 16.7808 27.2573 16.5387 26.8897 16.4123C25.3246 15.3057 23.4069 14.4492 21.2816 13.8953C22.5091 12.8664 22.8317 11.1793 22.1182 9.81064C22.7599 8.22397 22.9907 6.71631 22.7934 5.32696C22.3968 1.66382 18.339 -0.784097 15.3783 1.56465C11.7166 1.2307 6.54733 1.82568 8.07106 6.78897C8.31462 7.68848 8.66396 8.6833 8.48688 9.51215C8.46132 9.63629 8.48638 9.75472 8.5329 9.86295C7.8195 11.2726 8.22942 12.9816 9.49969 13.9912C7.51282 14.5465 5.71791 15.3699 4.24744 16.4127C3.87567 16.541 3.56742 16.7875 3.35452 17.1039C-0.798492 20.5035 -0.957618 25.7241 3.04351 29.26V31.7455C3.0229 32.7485 3.94368 33.6082 4.94334 33.5231C4.65923 34.471 4.9468 35.6075 5.64666 36.2726C5.83361 36.4541 6.11586 36.4921 6.34274 36.3705C9.27536 34.7655 12.5889 34.7942 15.5692 36.0015C18.5536 34.7895 21.8684 34.7693 24.796 36.3706C25.0229 36.4921 25.3052 36.4541 25.4921 36.2726C26.1915 35.6075 26.48 34.471 26.1955 33.5232C27.1979 33.6108 28.1143 32.7474 28.0953 31.7455C28.0953 31.7455 28.0953 29.26 28.0953 29.26C32.1005 25.7182 31.9365 20.4968 27.7755 17.0916ZM3.04351 27.5585C0.755814 24.9769 0.752433 21.6545 3.04351 19.0775V27.5585ZM11.2654 2.96587C12.6919 2.64285 13.9996 2.58634 15.5036 2.78148C15.6888 2.80448 15.8752 2.74158 16.0057 2.60818C16.8474 1.75221 18.363 1.59203 19.5297 2.23539C21.437 3.27696 22.0586 5.93413 21.4391 8.07318C21.2088 5.77595 19.4817 3.84099 17.0622 4.29366C15.555 4.68166 14.0663 4.24047 12.5597 4.25266C11.0391 4.40451 9.69483 5.67725 9.42696 7.21211C8.62603 4.86959 8.86346 3.40128 11.2654 2.96587ZM9.37402 11.3822C9.37518 10.9684 9.48527 10.5609 9.69206 10.2042C10.2116 9.31061 10.4359 8.29067 10.6054 7.40499C10.7917 6.38803 11.6885 5.53694 12.6878 5.43879C14.2235 5.52089 15.7491 5.83813 17.2848 5.46544C18.3741 5.24428 19.4997 5.88254 19.9299 6.93521C20.2477 7.94584 20.3253 9.01019 20.9018 10.0349C21.8641 11.5079 20.9402 13.0819 19.4807 13.6758C18.6315 13.9799 17.6506 14.3809 16.8142 15.0481C15.9684 15.7244 14.7085 15.723 13.8627 15.0484C12.3437 13.7111 9.55241 13.779 9.37402 11.3822ZM14.3764 16.6149C15.1515 16.8515 16.0306 16.783 16.7623 16.449C16.9898 18.3233 14.3309 18.4916 14.3764 16.6149ZM4.23645 23.328C4.61274 23.328 4.84341 23.3443 5.02107 23.4847C5.28344 23.6771 5.42583 24.1085 5.14161 24.2856C4.46982 24.8493 4.63804 25.5934 5.23721 26.0901C5.8371 26.7768 4.955 27.5077 4.23645 27.4934V23.328ZM6.2309 35.0896C5.95655 34.6081 5.9623 33.9421 6.23629 33.4648C7.79773 33.4401 9.3663 33.6078 10.8198 33.9412C9.25563 34.0064 7.69601 34.3847 6.2309 35.0896ZM14.9729 34.1902C12.6989 32.9577 9.66934 32.2645 6.5868 32.2645C6.02026 32.2689 5.45324 32.288 4.88826 32.3356C4.71409 32.349 4.55216 32.2948 4.42634 32.1789C4.30402 32.0665 4.23645 31.9127 4.23645 31.7455V28.6861C6.16952 28.6875 7.47474 26.5577 5.97519 25.1389C7.32409 23.8471 5.85191 21.9179 4.23645 22.1357V18.1059C4.2192 17.796 4.57193 17.6938 4.7702 17.5077C8.48303 16.8642 12.4569 18.2884 14.9729 21.1541V34.1902ZM7.02178 16.1736C8.21181 15.6082 9.5377 15.1639 10.9509 14.8578C11.6958 15.1241 12.5115 15.4934 13.1835 16.0244C13.1387 16.8789 13.2097 17.8292 13.8832 18.4437C15.3234 19.9475 17.9966 18.8403 17.9553 16.7574C17.9553 16.7575 17.9553 15.7061 17.9553 15.7061C18.5714 15.3055 19.2622 15.0213 19.8833 14.7988C21.4145 15.103 22.8419 15.5676 24.1174 16.1738C20.9274 16.2992 17.7926 17.6942 15.5694 20.0434C13.3459 17.6945 10.2103 16.2991 7.02178 16.1736ZM24.9079 35.0896C23.444 34.3846 21.8855 34.0062 20.3222 33.9406C21.7751 33.6076 23.3426 33.4401 24.9025 33.4648C25.1765 33.9421 25.1822 34.6081 24.9079 35.0896ZM25.9971 24.2856C25.713 24.1086 25.8553 23.6771 26.1177 23.4847C26.2954 23.3443 26.526 23.328 26.9012 23.328C26.9023 23.328 26.9023 27.4934 26.9023 27.4934C26.1826 27.507 25.3023 26.777 25.9016 26.0895C26.5034 25.5845 26.6708 24.8581 25.9971 24.2856ZM26.9023 22.1358C25.2866 21.9192 23.8147 23.8465 25.1636 25.1389C23.6637 26.5567 24.9701 28.6887 26.9023 28.6861V31.7455C26.9023 31.9127 26.8348 32.0665 26.7124 32.1789C26.2806 32.5092 25.6519 32.2281 25.1471 32.2805C21.8644 32.1848 18.5857 32.8782 16.1659 34.1902V21.1541C18.6827 18.287 22.6592 16.8624 26.3717 17.5081C26.5735 17.6896 26.9192 17.7933 26.9023 18.1059V22.1358ZM28.0953 27.5585V19.0773C30.3861 21.6562 30.3831 24.9763 28.0953 27.5585Z\\\" fill=\\\"white\\\"\\\/>\\n<path d=\\\"M23.9198 9.59966C24.2495 9.59966 24.5163 9.33259 24.5163 9.00319C24.501 8.24857 25.2588 7.65097 25.997 7.84316C27.0999 8.08919 27.1691 9.6096 26.2841 10.049C25.5508 10.4533 25.1128 11.1578 25.1128 11.9337C25.0874 12.2807 25.3581 12.5585 25.7092 12.5561C26.0389 12.5561 26.3057 12.2631 26.3057 11.9337C26.3057 11.5991 26.5131 11.2848 26.8596 11.0937C27.8027 10.5745 28.2739 9.51229 28.0328 8.4507C27.7034 6.78055 25.503 6.04643 24.2215 7.13784C23.5837 7.55559 22.701 9.44788 23.9198 9.59966ZM25.7092 14.3714C26.4928 14.3562 26.4927 13.1933 25.7092 13.1785C24.9257 13.1934 24.9258 14.3563 25.7092 14.3714ZM3.04335 3.63495C3.37304 3.63495 3.63982 3.36788 3.63982 3.03848C3.62457 2.28401 4.38239 1.68594 5.12051 1.87845C6.22346 2.12449 6.29263 3.64489 5.40764 4.08434C4.67432 4.48859 4.23629 5.19312 4.23629 5.96899C4.21095 6.31601 4.48166 6.59383 4.83276 6.59139C5.16244 6.59139 5.42923 6.29839 5.42923 5.96899C5.42923 5.63435 5.6366 5.3201 5.98317 5.12904C6.92622 4.60975 7.39746 3.54758 7.15631 2.48599C6.82648 0.81552 4.62765 0.0825289 3.34504 1.17313C2.70721 1.59089 1.82457 3.48317 3.04335 3.63495ZM4.8328 8.40671C5.61632 8.39153 5.61617 7.22863 4.83276 7.21377C4.04924 7.22874 4.04931 8.39164 4.8328 8.40671ZM17.8533 25.0133C17.3795 25.0252 17.0811 24.4403 17.3728 24.0641C18.2727 22.8374 19.4616 21.8751 20.8118 21.2815C21.6064 20.9349 22.4582 20.7021 23.3352 20.6218C24.0748 20.6201 24.137 21.7303 23.4015 21.8113C21.4892 21.8827 19.0877 23.5322 18.3351 24.7696C18.2232 24.9221 18.0432 25.0133 17.8533 25.0133ZM17.8533 29.785C17.3795 29.797 17.0811 29.2121 17.3728 28.8358C18.2727 27.6091 19.4616 26.6469 20.8118 26.0533C21.6062 25.707 22.4573 25.4738 23.334 25.3939C24.0747 25.3917 24.1375 26.5017 23.4015 26.5831C21.4892 26.6545 19.0877 28.3039 18.3351 29.5414C18.2232 29.6939 18.0432 29.785 17.8533 29.785ZM13.5645 25.0133C13.3746 25.0133 13.1946 24.9221 13.0827 24.7695C12.3294 23.5316 9.92886 21.8833 8.01617 21.8114C7.28362 21.7318 7.34041 20.6192 8.08267 20.6219C8.95922 20.7019 9.81116 20.9349 10.606 21.2815C11.9562 21.8751 13.1451 22.8374 14.045 24.0644C14.3357 24.4396 14.0393 25.026 13.5645 25.0133ZM13.5645 29.785C13.3746 29.785 13.1946 29.6939 13.0827 29.5412C12.3294 28.3034 9.92886 26.6551 8.01617 26.5832C7.28315 26.5031 7.34052 25.3908 8.08384 25.3939C8.95975 25.4733 9.81126 25.707 10.606 26.0533C11.9562 26.6469 13.1451 27.6091 14.045 28.8361C14.3357 29.2114 14.0393 29.7978 13.5645 29.785Z\\\" fill=\\\"white\\\"\\\/>\\n<\\\/svg>\\n\",\"description\":\"Facere quos aut qui id mollitia. Numquam ea harum aspernatur aut velit iure pariatur. Cupiditate eum ut natus est nemo.\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/categories\\\/1\"},\"services_count\":0},\"meta\":[]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified category",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/categories\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/categories\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the category."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Delete a specific category from the system.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Admin Client Management",
+            "description": "\nAPIs for managing clients in the admin panel",
+            "item": [
+                {
+                    "name": "Display a listing of clients",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/clients",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/clients"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Get a list of all clients in the system.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": true,\n    \"message\": \"\u062a\u0645 \u062c\u0644\u0628 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645\u064a\u0646 \u0628\u0646\u062c\u0627\u062d\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"John Doe\",\n            \"email\": \"john@example.com\",\n            \"phone\": \"+1234567890\",\n            \"username\": \"john-doe\",\n            \"type\": \"client\",\n            \"created_at\": \"2024-01-01T12:00:00.000000Z\",\n            \"updated_at\": \"2024-01-01T12:00:00.000000Z\"\n        }\n    ]\n}",
+                            "name": "Success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a new client",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/clients",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/clients"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"John Doe\",\"email\":\"john@example.com\",\"password\":\"password123\",\"phone\":\"+1234567890\",\"username\":\"john-doe\"}"
+                        },
+                        "description": "Create a new client account in the system.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"status\": true,\n    \"message\": \"\u062a\u0645 \u0625\u0646\u0634\u0627\u0621 \u0627\u0644\u0639\u0645\u064a\u0644 \u0628\u0646\u062c\u0627\u062d\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john@example.com\",\n        \"phone\": \"+1234567890\",\n        \"username\": \"john-doe\",\n        \"type\": \"client\",\n        \"created_at\": \"2024-01-01T12:00:00.000000Z\",\n        \"updated_at\": \"2024-01-01T12:00:00.000000Z\"\n    }\n}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"status\": false,\n    \"message\": \"The email has already been taken.\",\n    \"data\": null\n}",
+                            "name": "Validation Error"
+                        }
+                    ]
+                },
+                {
+                    "name": "Display client details",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/clients\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/clients\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the client."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Get detailed information about a specific client.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": true,\n    \"message\": \"\u062a\u0645 \u062c\u0644\u0628 \u0627\u0644\u0639\u0645\u064a\u0644 \u0628\u0646\u062c\u0627\u062d\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john@example.com\",\n        \"phone\": \"+1234567890\",\n        \"username\": \"john-doe\",\n        \"type\": \"client\",\n        \"created_at\": \"2024-01-01T12:00:00.000000Z\",\n        \"updated_at\": \"2024-01-01T12:00:00.000000Z\"\n    }\n}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n    \"status\": false,\n    \"message\": \"\u0627\u0644\u0639\u0645\u064a\u0644 \u063a\u064a\u0631 \u0645\u0648\u062c\u0648\u062f\",\n    \"data\": null\n}",
+                            "name": "Not Found"
+                        }
+                    ]
+                },
+                {
+                    "name": "Update client details",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/clients\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/clients\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the client."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"John Doe\",\"email\":\"john@example.com\",\"phone\":\"+1234567890\",\"username\":\"john-doe\",\"password\":\"newpassword123\"}"
+                        },
+                        "description": "Update the specified client's information.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": true,\n    \"message\": \"\u062a\u0645 \u062a\u062d\u062f\u064a\u062b \u0627\u0644\u0639\u0645\u064a\u0644 \u0628\u0646\u062c\u0627\u062d\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john@example.com\",\n        \"phone\": \"+1234567890\",\n        \"username\": \"john-doe\",\n        \"type\": \"client\",\n        \"created_at\": \"2024-01-01T12:00:00.000000Z\",\n        \"updated_at\": \"2024-01-01T12:00:00.000000Z\"\n    }\n}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n    \"status\": false,\n    \"message\": \"\u0627\u0644\u0639\u0645\u064a\u0644 \u063a\u064a\u0631 \u0645\u0648\u062c\u0648\u062f\",\n    \"data\": null\n}",
+                            "name": "Not Found"
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete client",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/clients\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/clients\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the client."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Remove the specified client from the system.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": true,\n    \"message\": \"\u062a\u0645 \u062d\u0630\u0641 \u0627\u0644\u0639\u0645\u064a\u0644 \u0628\u0646\u062c\u0627\u062d\",\n    \"data\": null\n}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n    \"status\": false,\n    \"message\": \"\u0627\u0644\u0639\u0645\u064a\u0644 \u063a\u064a\u0631 \u0645\u0648\u062c\u0648\u062f\",\n    \"data\": null\n}",
+                            "name": "Not Found"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Admin Freelancer Management",
+            "description": "\nAPIs for managing freelancers",
+            "item": [
+                {
+                    "name": "List all freelancers",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/freelancers",
+                            "query": [
+                                {
+                                    "key": "sort_by",
+                                    "value": "created_at",
+                                    "description": "Field to sort by (e.g., created_at, name).",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "sort_order",
+                                    "value": "desc",
+                                    "description": "Sort direction (asc or desc).",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "15",
+                                    "description": "Number of items per page.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/freelancers?sort_by=created_at&sort_order=desc&per_page=15"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Get a paginated list of all freelancers.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"data\": [\n   {\n     \"id\": 1,\n     \"name\": \"John Doe\",\n     \"email\": \"john@example.com\",\n     \"created_at\": \"2024-03-20T12:00:00Z\"\n   }\n ],\n \"success\": true,\n \"message\": \"\u062a\u0645 \u062c\u0644\u0628 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645\u064a\u0646 \u0628\u0646\u062c\u0627\u062d\",\n \"status\": 200,\n \"meta\": {\n   \"pagination\": {\n     \"total\": 50,\n     \"per_page\": 15,\n     \"current_page\": 1,\n     \"last_page\": 4\n   }\n }\n}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"data\": null,\n \"success\": false,\n \"message\": \"\u062e\u0637\u0627 \u0641 \u0627\u0644\u0628\u0631\u0627\u0645\u0632\",\n \"status\": 422\/500,\n \"meta\": {\n   \"errors\": [\n         'sortBy'=> 'Invalid filter parameters'  \/\/ 422 error example\n         'message'=> 'Invalid filter parameters' \/\/ 500 error example\n         ],\n }\n}",
+                            "name": "filure"
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a new freelancer",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/freelancers",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/freelancers"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"John Doe\",\"email\":\"john@example.com\",\"password\":\"password123\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n \"data\": {\n   \"id\": 1,\n   \"name\": \"John Doe\",\n   \"email\": \"john@example.com\",\n   \"created_at\": \"2024-03-20T12:00:00Z\"\n },\n \"message\": \"\u062a\u0645 \u0625\u0646\u0634\u0627\u0621 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0628\u0646\u062c\u0627\u062d\",\n \"success\": true,\n \"status\": 201\n}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n \"message\": \"Invalid filter parameters\",\n \"success\": false,\n \"status\": 422,\n \"errors\": {\n   \"email\": [\"The email has already been taken.\"],\n   \"password\": [\"The password must be at least 8 characters.\"]\n }\n}",
+                            "name": "validation_error"
+                        }
+                    ]
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/freelancers\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/freelancers\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "rerum",
+                                    "description": "The ID of the freelancer."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\"success\":false,\"message\":\"Error processing request\",\"data\":null,\"meta\":{\"errors\":{\"message\":\"SQLSTATE[42S22]: Column not found: 1054 Unknown column 'users.deleted_at' in 'where clause' (Connection: mysql, SQL: select * from `users` where `role` = freelancer and `users`.`id` = rerum and `users`.`deleted_at` is null limit 1)\"}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/freelancers\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/freelancers\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "aliquid",
+                                    "description": "The ID of the freelancer."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"doyxlpdgqwfvfw\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/freelancers\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/freelancers\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "saepe",
+                                    "description": "The ID of the freelancer."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Admin Order Management",
+            "description": "\nAPIs for managing orders",
+            "item": [
+                {
+                    "name": "List all orders",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orders",
+                            "query": [
+                                {
+                                    "key": "sort_by",
+                                    "value": "created_at",
+                                    "description": "Field to sort by (e.g., created_at, status).",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "sort_order",
+                                    "value": "desc",
+                                    "description": "Sort direction (asc or desc).",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "15",
+                                    "description": "Number of items per page.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/orders?sort_by=created_at&sort_order=desc&per_page=15"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Get a paginated list of all orders.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"data\": [\n   {\n     \"id\": 1,\n     \"status\": \"pending\",\n     \"total\": 199.99,\n     \"created_at\": \"2024-03-20T12:00:00Z\"\n   }\n ],\n \"message\": \"\u062a\u0645 \u062c\u0644\u0628 \u0627\u0644\u0637\u0644\u0628\u0627\u062a \u0628\u0646\u062c\u0627\u062d\",\n \"success\": true,\n \"status\": 200,\n \"pagination\": {\n   \"total\": 50,\n   \"per_page\": 15,\n   \"current_page\": 1,\n   \"last_page\": 4\n }\n}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a new order",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/orders"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"service_id\":1,\"client_id\":1,\"status\":\"pending\",\"total\":\"199.99\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n \"data\": {\n   \"id\": 1,\n   \"status\": \"pending\",\n   \"total\": 199.99,\n   \"created_at\": \"2024-03-20T12:00:00Z\"\n },\n \"message\": \"\u062a\u0645 \u0625\u0646\u0634\u0627\u0621 \u0627\u0644\u0637\u0644\u0628 \u0628\u0646\u062c\u0627\u062d\",\n \"success\": true,\n \"status\": 201\n}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Display the specified order",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orders\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/orders\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the order."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":true,\"message\":\"\\u062a\\u0645 \\u062c\\u0644\\u0628 \\u0627\\u0644\\u0637\\u0644\\u0628 \\u0628\\u0646\\u062c\\u0627\\u062d\",\"data\":{\"id\":1,\"buyer_id\":31,\"seller_id\":32,\"service_id\":11,\"delivery_date\":\"2024-11-12 08:34:12\",\"total_amount\":\"938.00\",\"rating_given\":\"no\",\"status\":\"in_progress\",\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\"},\"meta\":[]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified order",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orders\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/orders\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the order."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified order",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orders\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/orders\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the order."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/services",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/services"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":true,\"message\":\"\\u062a\\u0645 \\u062c\\u0644\\u0628 \\u0627\\u0644\\u062e\\u062f\\u0645\\u0627\\u062a \\u0628\\u0646\\u062c\\u0627\\u062d\",\"data\":[{\"id\":23,\"name\":\"\\u062a\\u0637\\u0648\\u064a\\u0631 \\u062a\\u0637\\u0628\\u064a\\u0642\\u0627\\u062a \\u0627\\u0644\\u062c\\u0648\\u0627\\u0644\",\"description\":\"Distinctio veniam et et nostrum autem. Rerum incidunt eum molestiae ullam eaque placeat similique. At aperiam vel quis ratione.\",\"price\":\"689.00\",\"status\":\"active\",\"rating\":null,\"views\":798,\"created_at\":\"2024-11-05T08:34:13.000000Z\",\"updated_at\":\"2024-11-05T08:34:13.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/23\"},\"orders_count\":0,\"reviews_count\":1},{\"id\":26,\"name\":\"\\u0643\\u062a\\u0627\\u0628\\u0629 \\u0627\\u0644\\u0645\\u062d\\u062a\\u0648\\u0649\",\"description\":\"Iste autem nobis voluptas. Fugiat architecto sed dolor ab nesciunt omnis. Quibusdam id dolore consequatur qui totam provident temporibus beatae. Eveniet sunt architecto reprehenderit praesentium.\",\"price\":\"316.00\",\"status\":\"active\",\"rating\":null,\"views\":125,\"created_at\":\"2024-11-05T08:34:13.000000Z\",\"updated_at\":\"2024-11-05T08:34:13.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/26\"},\"orders_count\":0,\"reviews_count\":1},{\"id\":28,\"name\":\"\\u0627\\u0644\\u062a\\u0631\\u062c\\u0645\\u0629\",\"description\":\"Qui voluptatem placeat asperiores. Qui eos molestiae ullam eligendi aut qui. Doloribus eos quam totam aspernatur dolores mollitia voluptates et.\",\"price\":\"320.00\",\"status\":\"active\",\"rating\":null,\"views\":197,\"created_at\":\"2024-11-05T08:34:13.000000Z\",\"updated_at\":\"2024-11-05T08:34:13.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/28\"},\"orders_count\":0,\"reviews_count\":1},{\"id\":1,\"name\":\"\\u062a\\u062d\\u0633\\u064a\\u0646 \\u0645\\u062d\\u0631\\u0643\\u0627\\u062a \\u0627\\u0644\\u0628\\u062d\\u062b\",\"description\":\"Facere non exercitationem ipsum. Animi aut quaerat dolorum repellat sunt alias. Aut similique veniam incidunt tempore.\",\"price\":\"429.00\",\"status\":\"active\",\"rating\":null,\"views\":826,\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/1\"},\"orders_count\":0,\"reviews_count\":0},{\"id\":2,\"name\":\"\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0648\\u0627\\u062c\\u0647\\u0627\\u062a \\u0627\\u0644\\u0645\\u0633\\u062a\\u062e\\u062f\\u0645\",\"description\":\"Et quam eum modi asperiores inventore. Nostrum aliquam quasi at voluptates voluptatem eaque est quas. Ut assumenda at aut. Tempora atque voluptates facere aliquam dolor.\",\"price\":\"708.00\",\"status\":\"active\",\"rating\":null,\"views\":68,\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/2\"},\"orders_count\":0,\"reviews_count\":0},{\"id\":4,\"name\":\"\\u062a\\u0637\\u0648\\u064a\\u0631 \\u062a\\u0637\\u0628\\u064a\\u0642\\u0627\\u062a \\u0627\\u0644\\u062c\\u0648\\u0627\\u0644\",\"description\":\"Voluptatem rem eos voluptatum. Aut ut culpa placeat autem reprehenderit. Recusandae aut quas odit ut consequatur vero.\",\"price\":\"770.00\",\"status\":\"active\",\"rating\":null,\"views\":907,\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/4\"},\"orders_count\":0,\"reviews_count\":0},{\"id\":5,\"name\":\"\\u0645\\u0648\\u0646\\u062a\\u0627\\u062c \\u0627\\u0644\\u0641\\u064a\\u062f\\u064a\\u0648\",\"description\":\"Dolorem maiores ducimus omnis molestiae optio. Ipsa nobis id quia dolorem. Dolor repudiandae et non magnam officiis. Iste nemo aliquam veniam optio. Molestiae facilis numquam commodi qui eius modi pariatur blanditiis.\",\"price\":\"987.00\",\"status\":\"active\",\"rating\":null,\"views\":909,\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/5\"},\"orders_count\":0,\"reviews_count\":0},{\"id\":9,\"name\":\"\\u0627\\u0644\\u062a\\u0633\\u0648\\u064a\\u0642 \\u0627\\u0644\\u0631\\u0642\\u0645\\u064a\",\"description\":\"Reprehenderit ut ducimus aut. Iusto quia sequi pariatur consequuntur. Cupiditate in voluptate exercitationem saepe est.\",\"price\":\"838.00\",\"status\":\"active\",\"rating\":null,\"views\":503,\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/9\"},\"orders_count\":0,\"reviews_count\":0},{\"id\":10,\"name\":\"\\u062a\\u062d\\u0633\\u064a\\u0646 \\u0645\\u062d\\u0631\\u0643\\u0627\\u062a \\u0627\\u0644\\u0628\\u062d\\u062b\",\"description\":\"Itaque sint modi omnis ducimus et. Nesciunt nesciunt officiis vitae provident provident. Eum ullam eum et nihil et atque dolorem.\",\"price\":\"899.00\",\"status\":\"active\",\"rating\":null,\"views\":455,\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/10\"},\"orders_count\":0,\"reviews_count\":0},{\"id\":11,\"name\":\"\\u062a\\u0637\\u0648\\u064a\\u0631 \\u0627\\u0644\\u0645\\u0648\\u0627\\u0642\\u0639\",\"description\":\"Et rerum quasi consequuntur. Exercitationem magnam magni laudantium quae veniam. Ratione et qui rerum dolorum. Officiis quisquam accusamus qui aliquam dignissimos est iusto. Doloremque exercitationem corrupti praesentium eos est voluptatem.\",\"price\":\"626.00\",\"status\":\"active\",\"rating\":null,\"views\":394,\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/11\"},\"orders_count\":0,\"reviews_count\":0},{\"id\":12,\"name\":\"\\u062a\\u062d\\u0633\\u064a\\u0646 \\u0645\\u062d\\u0631\\u0643\\u0627\\u062a \\u0627\\u0644\\u0628\\u062d\\u062b\",\"description\":\"Est totam qui in aut iure. Laudantium maiores nobis placeat temporibus corporis. Laboriosam eligendi doloremque iusto perferendis molestiae quas assumenda.\",\"price\":\"121.00\",\"status\":\"active\",\"rating\":null,\"views\":520,\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/12\"},\"orders_count\":0,\"reviews_count\":0},{\"id\":13,\"name\":\"\\u0627\\u0644\\u062a\\u0639\\u0644\\u064a\\u0642 \\u0627\\u0644\\u0635\\u0648\\u062a\\u064a\",\"description\":\"Atque in impedit ad quis fuga voluptatibus facilis. Fugiat omnis quod blanditiis unde cum officiis. Quia sed asperiores dicta aperiam quo. Non perferendis minus vel consequatur.\",\"price\":\"981.00\",\"status\":\"active\",\"rating\":null,\"views\":661,\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/13\"},\"orders_count\":0,\"reviews_count\":0},{\"id\":16,\"name\":\"\\u0643\\u062a\\u0627\\u0628\\u0629 \\u0627\\u0644\\u0645\\u062d\\u062a\\u0648\\u0649\",\"description\":\"Nulla qui autem nihil iure soluta. Ab id facilis nihil et amet. Nesciunt eos suscipit maxime inventore ipsum necessitatibus ab ut. Quis unde quo animi eaque iure omnis fuga.\",\"price\":\"103.00\",\"status\":\"active\",\"rating\":null,\"views\":192,\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/16\"},\"orders_count\":0,\"reviews_count\":0},{\"id\":17,\"name\":\"\\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u062c\\u0631\\u0627\\u0641\\u064a\\u0643\\u064a\",\"description\":\"Ut consequuntur numquam mollitia qui ipsum ut. Vero et blanditiis est nulla quibusdam pariatur. Ea repudiandae earum eligendi libero dolor laboriosam. Quis error omnis aliquid vitae.\",\"price\":\"971.00\",\"status\":\"active\",\"rating\":null,\"views\":452,\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/17\"},\"orders_count\":0,\"reviews_count\":0},{\"id\":19,\"name\":\"\\u062a\\u0637\\u0648\\u064a\\u0631 \\u0627\\u0644\\u0645\\u0648\\u0627\\u0642\\u0639\",\"description\":\"Nesciunt dolorem corporis nihil nulla dolores voluptatibus et. Laboriosam quibusdam exercitationem aliquam harum deleniti. Laborum tempora rerum ipsa non doloribus. Possimus iste repellendus maxime eligendi sit.\",\"price\":\"827.00\",\"status\":\"active\",\"rating\":null,\"views\":821,\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/19\"},\"orders_count\":0,\"reviews_count\":0}],\"meta\":{\"pagination\":{\"total\":15,\"per_page\":15,\"current_page\":1,\"last_page\":1,\"from\":1,\"to\":15}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/services",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/services"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"iisfxigkdhslukwtltiq\",\"description\":\"Consequuntur sed magnam cupiditate vero.\",\"response_time\":\"qrpisqjxkoennsgmkpykijwj\",\"tags\":\"pnqtaizwaqmrhyqzd\",\"price\":36,\"delivery_time\":\"txaybufgacnx\",\"thumbnail_url\":\"http:\\\/\\\/www.predovic.com\\\/nemo-nobis-ut-sed-non\",\"status\":\"sqvpuetktc\",\"category_id\":\"non\",\"user_id\":\"et\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/services\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/services\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the service."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":200,\"message\":\"\\u062a\\u0645 \\u062c\\u0644\\u0628 \\u0627\\u0644\\u062e\\u062f\\u0645\\u0629 \\u0628\\u0646\\u062c\\u0627\\u062d\",\"data\":{\"id\":1,\"name\":\"\\u062a\\u062d\\u0633\\u064a\\u0646 \\u0645\\u062d\\u0631\\u0643\\u0627\\u062a \\u0627\\u0644\\u0628\\u062d\\u062b\",\"description\":\"Facere non exercitationem ipsum. Animi aut quaerat dolorum repellat sunt alias. Aut similique veniam incidunt tempore.\",\"price\":\"429.00\",\"status\":\"active\",\"rating\":null,\"views\":826,\"created_at\":\"2024-11-05T08:34:12.000000Z\",\"updated_at\":\"2024-11-05T08:34:12.000000Z\",\"links\":{\"self\":\"http:\\\/\\\/localhost\\\/api\\\/services\\\/1\"},\"orders_count\":0,\"reviews_count\":0},\"meta\":[]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/services\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/services\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the service."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"bmgusbvsftskxbxvpptplr\",\"description\":\"Dolorem minima at qui quos commodi.\",\"response_time\":\"rg\",\"tags\":\"pwmotax\",\"price\":90,\"delivery_time\":\"kuqhezqvydczicfqxd\",\"thumbnail_url\":\"http:\\\/\\\/hermann.com\\\/ea-eaque-commodi-explicabo-omnis-dolores-possimus-eum\",\"status\":\"inactive\",\"category_id\":\"autem\",\"user_id\":\"aperiam\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/services\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/services\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the service."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/reviews",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/reviews"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/reviews",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/reviews"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"order_id\":\"voluptatem\",\"rating\":2,\"comment\":\"kjdkjstyicwufkfdsl\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/reviews\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/reviews\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the review."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/reviews\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/reviews\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the review."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/reviews\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/reviews\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the review."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/posts",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/posts"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\n    \"message\": \"Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/posts",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/posts"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/posts\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/posts\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the post."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"success\":true,\"message\":\"\\u062a\\u0645 \\u062c\\u0644\\u0628 \\u0627\\u0644\\u0628\\u0648\\u0633\\u062a \\u0628\\u0646\\u062c\\u0627\\u062d\",\"data\":{\"id\":1,\"title\":\"\\u0622\\u0644\\u064a\\u0629 \\u0639\\u0645\\u0644 \\u0645\\u0646\\u0635\\u0629 \\u0645\\u0639\\u0627\\u0648\\u0646\",\"content\":\"\\u0639\\u0644\\u064a\\u0643 \\u0623\\u0646 \\u062a\\u062a\\u062d\\u0642\\u0642 \\u0623\\u0648\\u0644\\u0627\\u064b \\u0623\\u0646 \\u0644\\u064a\\u0633 \\u0647\\u0646\\u0627\\u0643 \\u0623\\u064a \\u0643\\u0644\\u0645\\u0627\\u062a \\u0623\\u0648 \\u0639\\u0628\\u0627\\u0631\\u0627\\u062a \\u0645\\u062d\\u0631\\u062c\\u0629 \\u0623\\u0648 \\u063a\\u064a\\u0631 \\u0644\\u0627\\u0626\\u0642\\u0629 \\u0645\\u062e\\u0628\\u0623\\u0629 \\u0641\\u064a \\u0647\\u0630\\u0627 \\u0627\\u0644\\u0646\\u0635. \\u0628\\u064a\\u0646\\u0645\\u0627 \\u062a\\u0639\\u0645\\u0644 \\u062c\\u0645\\u064a\\u0639 \\u0645\\u0648\\u0644\\u0651\\u062f\\u0627\\u062a \\u0646\\u0635\\u0648\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0639\\u0644\\u0649 \\u0627\\u0644\\u0625\\u0646\\u062a\\u0631\\u0646\\u062a \\u0639\\u0644\\u0649 \\u0625\\u0639\\u0627\\u062f\\u0629 \\u062a\\u0643\\u0631\\u0627\\u0631 \\u0645\\u0642\\u0627\\u0637\\u0639 \\u0645\\u0646 \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0646\\u0641\\u0633\\u0647 \\u0639\\u062f\\u0629 \\u0645\\u0631\\u0627\\u062a \\u0628\\u0645\\u0627 \\u062a\\u062a\\u0637\\u0644\\u0628\\u0647 \\u0627\\u0644\\u062d\\u0627\\u062c\\u0629\\u060c \\u064a\\u0642\\u0648\\u0645 \\u0645\\u0648\\u0644\\u0651\\u062f\\u0646\\u0627 \\u0647\\u0630\\u0627 \\u0628\\u0627\\u0633\\u062a\\u062e\\u062f\\u0627\\u0645 \\u0643\\u0644\\u0645\\u0627\\u062a \\u0645\\u0646 \\u0642\\u0627\\u0645\\u0648\\u0633 \\u064a\\u062d\\u0648\\u064a \\u0639\\u0644\\u0649 \\u0623\\u0643\\u062b\\u0631 \\u0645\\u0646 200 \\u0643\\u0644\\u0645\\u0629 \\u0644\\u0627 \\u062a\\u064a\\u0646\\u064a\\u0629\\u060c \\u0645\\u0636\\u0627\\u0641 \\u0625\\u0644\\u064a\\u0647\\u0627 \\u0645\\u062c\\u0645\\u0648\\u0639\\u0629 \\u0645\\u0646 \\u0627\\u0644\\u062c\\u0645\\u0644 \\u0627\\u0644\\u0646\\u0645\\u0648\\u0630\\u062c\\u064a\\u0629\\u060c \\u0644\\u062a\\u0643\\u0648\\u064a\\u0646 \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0630\\u0648 \\u0634\\u0643\\u0644 \\u0645\\u0646\\u0637\\u0642\\u064a \\u0642\\u0631\\u064a\\u0628 \\u0625\\u0644\\u0649 \\u0627\\u0644\\u0646\\u0635 \\u0627\\u0644\\u062d\\u0642\\u064a\\u0642\\u064a. \\u0648\\u0628\\u0627\\u0644\\u062a\\u0627\\u0644\\u064a \\u064a\\u0643\\u0648\\u0646 \\u0627\\u0644\\u0646\\u0635 \\u0627\\u0644\\u0646\\u0627\\u062a\\u062d \\u062e\\u0627\\u0644\\u064a \\u0645\\u0646 \\u0627\\u0644\\u062a\\u0643\\u0631\\u0627\\u0631\\u060c \\u0623\\u0648 \\u0623\\u064a \\u0643\\u0644\\u0645\\u0627\\u062a \\u0623\\u0648 \\u0639\\u0628\\u0627\\u0631\\u0627\\u062a \\u063a\\u064a\\u0631 \\u0644\\u0627\\u0626\\u0642\\u0629 \\u0623\\u0648 \\u0645\\u0627 \\u0634\\u0627\\u0628\\u0647. \\u0648\\u0647\\u0630\\u0627 \\u0645\\u0627 \\u064a\\u062c\\u0639\\u0644\\u0647 \\u0623\\u0648\\u0644 \\u0645\\u0648\\u0644\\u0651\\u062f \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u062d\\u0642\\u064a\\u0642\\u064a \\u0639\\u0644\\u0649 \\u0627\\u0644\\u0625\\u0646\\u062a\\u0631\\u0646\\u062a\\n        \\u0639\\u0644\\u064a\\u0643 \\u0623\\u0646 \\u062a\\u062a\\u062d\\u0642\\u0642 \\u0623\\u0648\\u0644\\u0627\\u064b \\u0623\\u0646 \\u0644\\u064a\\u0633 \\u0647\\u0646\\u0627\\u0643 \\u0623\\u064a \\u0643\\u0644\\u0645\\u0627\\u062a \\u0623\\u0648 \\u0639\\u0628\\u0627\\u0631\\u0627\\u062a \\u0645\\u062d\\u0631\\u062c\\u0629 \\u0623\\u0648 \\u063a\\u064a\\u0631 \\u0644\\u0627\\u0626\\u0642\\u0629 \\u0645\\u062e\\u0628\\u0623\\u0629 \\u0641\\u064a \\u0647\\u0630\\u0627 \\u0627\\u0644\\u0646\\u0635. \\u0628\\u064a\\u0646\\u0645\\u0627 \\u062a\\u0639\\u0645\\u0644 \\u062c\\u0645\\u064a\\u0639 \\u0645\\u0648\\u0644\\u0651\\u062f\\u0627\\u062a \\u0646\\u0635\\u0648\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0639\\u0644\\u0649 \\u0627\\u0644\\u0625\\u0646\\u062a\\u0631\\u0646\\u062a \\u0639\\u0644\\u0649 \\u0625\\u0639\\u0627\\u062f\\u0629 \\u062a\\u0643\\u0631\\u0627\\u0631 \\u0645\\u0642\\u0627\\u0637\\u0639 \\u0645\\u0646 \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0646\\u0641\\u0633\\u0647 \\u0639\\u062f\\u0629 \\u0645\\u0631\\u0627\\u062a \\u0628\\u0645\\u0627 \\u062a\\u062a\\u0637\\u0644\\u0628\\u0647 \\u0627\\u0644\\u062d\\u0627\\u062c\\u0629\\u060c \\u064a\\u0642\\u0648\\u0645 \\u0645\\u0648\\u0644\\u0651\\u062f\\u0646\\u0627 \\u0647\\u0630\\u0627 \\u0628\\u0627\\u0633\\u062a\\u062e\\u062f\\u0627\\u0645 \\u0643\\u0644\\u0645\\u0627\\u062a \\u0645\\u0646 \\u0642\\u0627\\u0645\\u0648\\u0633 \\u064a\\u062d\\u0648\\u064a \\u0639\\u0644\\u0649 \\u0623\\u0643\\u062b\\u0631 \\u0645\\u0646 200 \\u0643\\u0644\\u0645\\u0629 \\u0644\\u0627 \\u062a\\u064a\\u0646\\u064a\\u0629\\u060c \\u0645\\u0636\\u0627\\u0641 \\u0625\\u0644\\u064a\\u0647\\u0627 \\u0645\\u062c\\u0645\\u0648\\u0639\\u0629 \\u0645\\u0646 \\u0627\\u0644\\u062c\\u0645\\u0644 \\u0627\\u0644\\u0646\\u0645\\u0648\\u0630\\u062c\\u064a\\u0629\\u060c \\u0644\\u062a\\u0643\\u0648\\u064a\\u0646 \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0630\\u0648 \\u0634\\u0643\\u0644 \\u0645\\u0646\\u0637\\u0642\\u064a \\u0642\\u0631\\u064a\\u0628 \\u0625\\u0644\\u0649 \\u0627\\u0644\\u0646\\u0635 \\u0627\\u0644\\u062d\\u0642\\u064a\\u0642\\u064a. \\u0648\\u0628\\u0627\\u0644\\u062a\\u0627\\u0644\\u064a \\u064a\\u0643\\u0648\\u0646 \\u0627\\u0644\\u0646\\u0635 \\u0627\\u0644\\u0646\\u0627\\u062a\\u062d \\u062e\\u0627\\u0644\\u064a \\u0645\\u0646 \\u0627\\u0644\\u062a\\u0643\\u0631\\u0627\\u0631\\u060c \\u0623\\u0648 \\u0623\\u064a \\u0643\\u0644\\u0645\\u0627\\u062a \\u0623\\u0648 \\u0639\\u0628\\u0627\\u0631\\u0627\\u062a \\u063a\\u064a\\u0631 \\u0644\\u0627\\u0626\\u0642\\u0629 \\u0623\\u0648 \\u0645\\u0627 \\u0634\\u0627\\u0628\\u0647. \\u0648\\u0647\\u0630\\u0627 \\u0645\\u0627 \\u064a\\u062c\\u0639\\u0644\\u0647 \\u0623\\u0648\\u0644 \\u0645\\u0648\\u0644\\u0651\\u062f \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u062d\\u0642\\u064a\\u0642\\u064a \\u0639\\u0644\\u0649 \\u0627\\u0644\\u0625\\u0646\\u062a\\u0631\\u0646\\u062a\\n        \\u0639\\u0644\\u064a\\u0643 \\u0623\\u0646 \\u062a\\u062a\\u062d\\u0642\\u0642 \\u0623\\u0648\\u0644\\u0627\\u064b \\u0623\\u0646 \\u0644\\u064a\\u0633 \\u0647\\u0646\\u0627\\u0643 \\u0623\\u064a \\u0643\\u0644\\u0645\\u0627\\u062a \\u0623\\u0648 \\u0639\\u0628\\u0627\\u0631\\u0627\\u062a \\u0645\\u062d\\u0631\\u062c\\u0629 \\u0623\\u0648 \\u063a\\u064a\\u0631 \\u0644\\u0627\\u0626\\u0642\\u0629 \\u0645\\u062e\\u0628\\u0623\\u0629 \\u0641\\u064a \\u0647\\u0630\\u0627 \\u0627\\u0644\\u0646\\u0635. \\u0628\\u064a\\u0646\\u0645\\u0627 \\u062a\\u0639\\u0645\\u0644 \\u062c\\u0645\\u064a\\u0639 \\u0645\\u0648\\u0644\\u0651\\u062f\\u0627\\u062a \\u0646\\u0635\\u0648\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0639\\u0644\\u0649 \\u0627\\u0644\\u0625\\u0646\\u062a\\u0631\\u0646\\u062a \\u0639\\u0644\\u0649 \\u0625\\u0639\\u0627\\u062f\\u0629 \\u062a\\u0643\\u0631\\u0627\\u0631 \\u0645\\u0642\\u0627\\u0637\\u0639 \\u0645\\u0646 \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0646\\u0641\\u0633\\u0647 \\u0639\\u062f\\u0629 \\u0645\\u0631\\u0627\\u062a \\u0628\\u0645\\u0627 \\u062a\\u062a\\u0637\\u0644\\u0628\\u0647 \\u0627\\u0644\\u062d\\u0627\\u062c\\u0629\\u060c \\u064a\\u0642\\u0648\\u0645 \\u0645\\u0648\\u0644\\u0651\\u062f\\u0646\\u0627 \\u0647\\u0630\\u0627 \\u0628\\u0627\\u0633\\u062a\\u062e\\u062f\\u0627\\u0645 \\u0643\\u0644\\u0645\\u0627\\u062a \\u0645\\u0646 \\u0642\\u0627\\u0645\\u0648\\u0633 \\u064a\\u062d\\u0648\\u064a \\u0639\\u0644\\u0649 \\u0623\\u0643\\u062b\\u0631 \\u0645\\u0646 200 \\u0643\\u0644\\u0645\\u0629 \\u0644\\u0627 \\u062a\\u064a\\u0646\\u064a\\u0629\\u060c \\u0645\\u0636\\u0627\\u0641 \\u0625\\u0644\\u064a\\u0647\\u0627 \\u0645\\u062c\\u0645\\u0648\\u0639\\u0629 \\u0645\\u0646 \\u0627\\u0644\\u062c\\u0645\\u0644 \\u0627\\u0644\\u0646\\u0645\\u0648\\u0630\\u062c\\u064a\\u0629\\u060c \\u0644\\u062a\\u0643\\u0648\\u064a\\u0646 \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0630\\u0648 \\u0634\\u0643\\u0644 \\u0645\\u0646\\u0637\\u0642\\u064a \\u0642\\u0631\\u064a\\u0628 \\u0625\\u0644\\u0649 \\u0627\\u0644\\u0646\\u0635 \\u0627\\u0644\\u062d\\u0642\\u064a\\u0642\\u064a. \\u0648\\u0628\\u0627\\u0644\\u062a\\u0627\\u0644\\u064a \\u064a\\u0643\\u0648\\u0646 \\u0627\\u0644\\u0646\\u0635 \\u0627\\u0644\\u0646\\u0627\\u062a\\u062d \\u062e\\u0627\\u0644\\u064a \\u0645\\u0646 \\u0627\\u0644\\u062a\\u0643\\u0631\\u0627\\u0631\\u060c \\u0623\\u0648 \\u0623\\u064a \\u0643\\u0644\\u0645\\u0627\\u062a \\u0623\\u0648 \\u0639\\u0628\\u0627\\u0631\\u0627\\u062a \\u063a\\u064a\\u0631 \\u0644\\u0627\\u0626\\u0642\\u0629 \\u0623\\u0648 \\u0645\\u0627 \\u0634\\u0627\\u0628\\u0647. \\u0648\\u0647\\u0630\\u0627 \\u0645\\u0627 \\u064a\\u062c\\u0639\\u0644\\u0647 \\u0623\\u0648\\u0644 \\u0645\\u0648\\u0644\\u0651\\u062f \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u062d\\u0642\\u064a\\u0642\\u064a \\u0639\\u0644\\u0649 \\u0627\\u0644\\u0625\\u0646\\u062a\\u0631\\u0646\\u062a\\n        \\u0639\\u0644\\u064a\\u0643 \\u0623\\u0646 \\u062a\\u062a\\u062d\\u0642\\u0642 \\u0623\\u0648\\u0644\\u0627\\u064b \\u0623\\u0646 \\u0644\\u064a\\u0633 \\u0647\\u0646\\u0627\\u0643 \\u0623\\u064a \\u0643\\u0644\\u0645\\u0627\\u062a \\u0623\\u0648 \\u0639\\u0628\\u0627\\u0631\\u0627\\u062a \\u0645\\u062d\\u0631\\u062c\\u0629 \\u0623\\u0648 \\u063a\\u064a\\u0631 \\u0644\\u0627\\u0626\\u0642\\u0629 \\u0645\\u062e\\u0628\\u0623\\u0629 \\u0641\\u064a \\u0647\\u0630\\u0627 \\u0627\\u0644\\u0646\\u0635. \\u0628\\u064a\\u0646\\u0645\\u0627 \\u062a\\u0639\\u0645\\u0644 \\u062c\\u0645\\u064a\\u0639 \\u0645\\u0648\\u0644\\u0651\\u062f\\u0627\\u062a \\u0646\\u0635\\u0648\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0639\\u0644\\u0649 \\u0627\\u0644\\u0625\\u0646\\u062a\\u0631\\u0646\\u062a \\u0639\\u0644\\u0649 \\u0625\\u0639\\u0627\\u062f\\u0629 \\u062a\\u0643\\u0631\\u0627\\u0631 \\u0645\\u0642\\u0627\\u0637\\u0639 \\u0645\\u0646 \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0646\\u0641\\u0633\\u0647 \\u0639\\u062f\\u0629 \\u0645\\u0631\\u0627\\u062a \\u0628\\u0645\\u0627 \\u062a\\u062a\\u0637\\u0644\\u0628\\u0647 \\u0627\\u0644\\u062d\\u0627\\u062c\\u0629\\u060c \\u064a\\u0642\\u0648\\u0645 \\u0645\\u0648\\u0644\\u0651\\u062f\\u0646\\u0627 \\u0647\\u0630\\u0627 \\u0628\\u0627\\u0633\\u062a\\u062e\\u062f\\u0627\\u0645 \\u0643\\u0644\\u0645\\u0627\\u062a \\u0645\\u0646 \\u0642\\u0627\\u0645\\u0648\\u0633 \\u064a\\u062d\\u0648\\u064a \\u0639\\u0644\\u0649 \\u0623\\u0643\\u062b\\u0631 \\u0645\\u0646 200 \\u0643\\u0644\\u0645\\u0629 \\u0644\\u0627 \\u062a\\u064a\\u0646\\u064a\\u0629\\u060c \\u0645\\u0636\\u0627\\u0641 \\u0625\\u0644\\u064a\\u0647\\u0627 \\u0645\\u062c\\u0645\\u0648\\u0639\\u0629 \\u0645\\u0646 \\u0627\\u0644\\u062c\\u0645\\u0644 \\u0627\\u0644\\u0646\\u0645\\u0648\\u0630\\u062c\\u064a\\u0629\\u060c \\u0644\\u062a\\u0643\\u0648\\u064a\\u0646 \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0630\\u0648 \\u0634\\u0643\\u0644 \\u0645\\u0646\\u0637\\u0642\\u064a \\u0642\\u0631\\u064a\\u0628 \\u0625\\u0644\\u0649 \\u0627\\u0644\\u0646\\u0635 \\u0627\\u0644\\u062d\\u0642\\u064a\\u0642\\u064a. \\u0648\\u0628\\u0627\\u0644\\u062a\\u0627\\u0644\\u064a \\u064a\\u0643\\u0648\\u0646 \\u0627\\u0644\\u0646\\u0635 \\u0627\\u0644\\u0646\\u0627\\u062a\\u062d \\u062e\\u0627\\u0644\\u064a \\u0645\\u0646 \\u0627\\u0644\\u062a\\u0643\\u0631\\u0627\\u0631\\u060c \\u0623\\u0648 \\u0623\\u064a \\u0643\\u0644\\u0645\\u0627\\u062a \\u0623\\u0648 \\u0639\\u0628\\u0627\\u0631\\u0627\\u062a \\u063a\\u064a\\u0631 \\u0644\\u0627\\u0626\\u0642\\u0629 \\u0623\\u0648 \\u0645\\u0627 \\u0634\\u0627\\u0628\\u0647. \\u0648\\u0647\\u0630\\u0627 \\u0645\\u0627 \\u064a\\u062c\\u0639\\u0644\\u0647 \\u0623\\u0648\\u0644 \\u0645\\u0648\\u0644\\u0651\\u062f \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u062d\\u0642\\u064a\\u0642\\u064a \\u0639\\u0644\\u0649 \\u0627\\u0644\\u0625\\u0646\\u062a\\u0631\\u0646\\u062a\\n        \\u0639\\u0644\\u064a\\u0643 \\u0623\\u0646 \\u062a\\u062a\\u062d\\u0642\\u0642 \\u0623\\u0648\\u0644\\u0627\\u064b \\u0623\\u0646 \\u0644\\u064a\\u0633 \\u0647\\u0646\\u0627\\u0643 \\u0623\\u064a \\u0643\\u0644\\u0645\\u0627\\u062a \\u0623\\u0648 \\u0639\\u0628\\u0627\\u0631\\u0627\\u062a \\u0645\\u062d\\u0631\\u062c\\u0629 \\u0623\\u0648 \\u063a\\u064a\\u0631 \\u0644\\u0627\\u0626\\u0642\\u0629 \\u0645\\u062e\\u0628\\u0623\\u0629 \\u0641\\u064a \\u0647\\u0630\\u0627 \\u0627\\u0644\\u0646\\u0635. \\u0628\\u064a\\u0646\\u0645\\u0627 \\u062a\\u0639\\u0645\\u0644 \\u062c\\u0645\\u064a\\u0639 \\u0645\\u0648\\u0644\\u0651\\u062f\\u0627\\u062a \\u0646\\u0635\\u0648\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0639\\u0644\\u0649 \\u0627\\u0644\\u0625\\u0646\\u062a\\u0631\\u0646\\u062a \\u0639\\u0644\\u0649 \\u0625\\u0639\\u0627\\u062f\\u0629 \\u062a\\u0643\\u0631\\u0627\\u0631 \\u0645\\u0642\\u0627\\u0637\\u0639 \\u0645\\u0646 \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0646\\u0641\\u0633\\u0647 \\u0639\\u062f\\u0629 \\u0645\\u0631\\u0627\\u062a \\u0628\\u0645\\u0627 \\u062a\\u062a\\u0637\\u0644\\u0628\\u0647 \\u0627\\u0644\\u062d\\u0627\\u062c\\u0629\\u060c \\u064a\\u0642\\u0648\\u0645 \\u0645\\u0648\\u0644\\u0651\\u062f\\u0646\\u0627 \\u0647\\u0630\\u0627 \\u0628\\u0627\\u0633\\u062a\\u062e\\u062f\\u0627\\u0645 \\u0643\\u0644\\u0645\\u0627\\u062a \\u0645\\u0646 \\u0642\\u0627\\u0645\\u0648\\u0633 \\u064a\\u062d\\u0648\\u064a \\u0639\\u0644\\u0649 \\u0623\\u0643\\u062b\\u0631 \\u0645\\u0646 200 \\u0643\\u0644\\u0645\\u0629 \\u0644\\u0627 \\u062a\\u064a\\u0646\\u064a\\u0629\\u060c \\u0645\\u0636\\u0627\\u0641 \\u0625\\u0644\\u064a\\u0647\\u0627 \\u0645\\u062c\\u0645\\u0648\\u0639\\u0629 \\u0645\\u0646 \\u0627\\u0644\\u062c\\u0645\\u0644 \\u0627\\u0644\\u0646\\u0645\\u0648\\u0630\\u062c\\u064a\\u0629\\u060c \\u0644\\u062a\\u0643\\u0648\\u064a\\u0646 \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0630\\u0648 \\u0634\\u0643\\u0644 \\u0645\\u0646\\u0637\\u0642\\u064a \\u0642\\u0631\\u064a\\u0628 \\u0625\\u0644\\u0649 \\u0627\\u0644\\u0646\\u0635 \\u0627\\u0644\\u062d\\u0642\\u064a\\u0642\\u064a. \\u0648\\u0628\\u0627\\u0644\\u062a\\u0627\\u0644\\u064a \\u064a\\u0643\\u0648\\u0646 \\u0627\\u0644\\u0646\\u0635 \\u0627\\u0644\\u0646\\u0627\\u062a\\u062d \\u062e\\u0627\\u0644\\u064a \\u0645\\u0646 \\u0627\\u0644\\u062a\\u0643\\u0631\\u0627\\u0631\\u060c \\u0623\\u0648 \\u0623\\u064a \\u0643\\u0644\\u0645\\u0627\\u062a \\u0623\\u0648 \\u0639\\u0628\\u0627\\u0631\\u0627\\u062a \\u063a\\u064a\\u0631 \\u0644\\u0627\\u0626\\u0642\\u0629 \\u0623\\u0648 \\u0645\\u0627 \\u0634\\u0627\\u0628\\u0647. \\u0648\\u0647\\u0630\\u0627 \\u0645\\u0627 \\u064a\\u062c\\u0639\\u0644\\u0647 \\u0623\\u0648\\u0644 \\u0645\\u0648\\u0644\\u0651\\u062f \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u062d\\u0642\\u064a\\u0642\\u064a \\u0639\\u0644\\u0649 \\u0627\\u0644\\u0625\\u0646\\u062a\\u0631\\u0646\\u062a\\n        \\u0639\\u0644\\u064a\\u0643 \\u0623\\u0646 \\u062a\\u062a\\u062d\\u0642\\u0642 \\u0623\\u0648\\u0644\\u0627\\u064b \\u0623\\u0646 \\u0644\\u064a\\u0633 \\u0647\\u0646\\u0627\\u0643 \\u0623\\u064a \\u0643\\u0644\\u0645\\u0627\\u062a \\u0623\\u0648 \\u0639\\u0628\\u0627\\u0631\\u0627\\u062a \\u0645\\u062d\\u0631\\u062c\\u0629 \\u0623\\u0648 \\u063a\\u064a\\u0631 \\u0644\\u0627\\u0626\\u0642\\u0629 \\u0645\\u062e\\u0628\\u0623\\u0629 \\u0641\\u064a \\u0647\\u0630\\u0627 \\u0627\\u0644\\u0646\\u0635. \\u0628\\u064a\\u0646\\u0645\\u0627 \\u062a\\u0639\\u0645\\u0644 \\u062c\\u0645\\u064a\\u0639 \\u0645\\u0648\\u0644\\u0651\\u062f\\u0627\\u062a \\u0646\\u0635\\u0648\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0639\\u0644\\u0649 \\u0627\\u0644\\u0625\\u0646\\u062a\\u0631\\u0646\\u062a \\u0639\\u0644\\u0649 \\u0625\\u0639\\u0627\\u062f\\u0629 \\u062a\\u0643\\u0631\\u0627\\u0631 \\u0645\\u0642\\u0627\\u0637\\u0639 \\u0645\\u0646 \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0646\\u0641\\u0633\\u0647 \\u0639\\u062f\\u0629 \\u0645\\u0631\\u0627\\u062a \\u0628\\u0645\\u0627 \\u062a\\u062a\\u0637\\u0644\\u0628\\u0647 \\u0627\\u0644\\u062d\\u0627\\u062c\\u0629\\u060c \\u064a\\u0642\\u0648\\u0645 \\u0645\\u0648\\u0644\\u0651\\u062f\\u0646\\u0627 \\u0647\\u0630\\u0627 \\u0628\\u0627\\u0633\\u062a\\u062e\\u062f\\u0627\\u0645 \\u0643\\u0644\\u0645\\u0627\\u062a \\u0645\\u0646 \\u0642\\u0627\\u0645\\u0648\\u0633 \\u064a\\u062d\\u0648\\u064a \\u0639\\u0644\\u0649 \\u0623\\u0643\\u062b\\u0631 \\u0645\\u0646 200 \\u0643\\u0644\\u0645\\u0629 \\u0644\\u0627 \\u062a\\u064a\\u0646\\u064a\\u0629\\u060c \\u0645\\u0636\\u0627\\u0641 \\u0625\\u0644\\u064a\\u0647\\u0627 \\u0645\\u062c\\u0645\\u0648\\u0639\\u0629 \\u0645\\u0646 \\u0627\\u0644\\u062c\\u0645\\u0644 \\u0627\\u0644\\u0646\\u0645\\u0648\\u0630\\u062c\\u064a\\u0629\\u060c \\u0644\\u062a\\u0643\\u0648\\u064a\\u0646 \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u0630\\u0648 \\u0634\\u0643\\u0644 \\u0645\\u0646\\u0637\\u0642\\u064a \\u0642\\u0631\\u064a\\u0628 \\u0625\\u0644\\u0649 \\u0627\\u0644\\u0646\\u0635 \\u0627\\u0644\\u062d\\u0642\\u064a\\u0642\\u064a. \\u0648\\u0628\\u0627\\u0644\\u062a\\u0627\\u0644\\u064a \\u064a\\u0643\\u0648\\u0646 \\u0627\\u0644\\u0646\\u0635 \\u0627\\u0644\\u0646\\u0627\\u062a\\u062d \\u062e\\u0627\\u0644\\u064a \\u0645\\u0646 \\u0627\\u0644\\u062a\\u0643\\u0631\\u0627\\u0631\\u060c \\u0623\\u0648 \\u0623\\u064a \\u0643\\u0644\\u0645\\u0627\\u062a \\u0623\\u0648 \\u0639\\u0628\\u0627\\u0631\\u0627\\u062a \\u063a\\u064a\\u0631 \\u0644\\u0627\\u0626\\u0642\\u0629 \\u0623\\u0648 \\u0645\\u0627 \\u0634\\u0627\\u0628\\u0647. \\u0648\\u0647\\u0630\\u0627 \\u0645\\u0627 \\u064a\\u062c\\u0639\\u0644\\u0647 \\u0623\\u0648\\u0644 \\u0645\\u0648\\u0644\\u0651\\u062f \\u0646\\u0635 \\u0644\\u0648\\u0631\\u064a\\u0645 \\u0625\\u064a\\u0628\\u0633\\u0648\\u0645 \\u062d\\u0642\\u064a\\u0642\\u064a \\u0639\\u0644\\u0649 \\u0627\\u0644\\u0625\\u0646\\u062a\\u0631\\u0646\\u062a\",\"image\":\"https:\\\/\\\/via.placeholder.com\\\/640x480.png\\\/00bb00?text=repellendus\",\"read_time\":5,\"likes_count\":0,\"created_at\":\"2024-11-05T08:34:13.000000Z\",\"updated_at\":\"2024-11-05T08:34:13.000000Z\"},\"meta\":[]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/posts\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/posts\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the post."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/posts\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/posts\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the post."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

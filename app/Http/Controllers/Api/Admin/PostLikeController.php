@@ -1,0 +1,67 @@
+<?php
+
+namespace App\Http\Controllers\Api\Admin;
+
+use App\Models\PostLike;
+use App\Http\Requests\StorePostLikeRequest;
+use App\Http\Requests\UpdatePostLikeRequest;
+use App\Http\Controllers\Controller;
+
+class PostLikeController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StorePostLikeRequest $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(PostLike $postLike)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(PostLike $postLike)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdatePostLikeRequest $request, PostLike $postLike)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(PostLike $postLike)
+    {
+        //
+    }
+}
