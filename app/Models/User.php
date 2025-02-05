@@ -33,6 +33,7 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
         'username',
+        'balance',
         'phone',
         'birthdate',
         'gender',
@@ -265,5 +266,10 @@ class User extends Authenticatable implements JWTSubject
         $query->whereNotNull('skills')
             ->whereNotNull('bio')
             ->whereNot('bio', '');
+    }
+
+    public function chats()
+    {
+        return $this->hasMany(Chat::class, 'from_id')->orWhere('to_id', $this->id);
     }
 }

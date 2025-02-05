@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('seller_id')->constrained('users')->onDelete('cascade');
             $table->decimal('price', 10, 2);
             $table->boolean('rating_given')->default(false);
-            $table->enum('status', ['pending', 'in_progress', 'completed', 'canceled', 'rejected', 'accepted'])->default('pending');
+            $table->enum('status', ['pending', 'in_progress', 'completed', 'canceled', 'rejected', 'accepted', 'refunded'])->default('pending');
             $table->date('deadline');
             $table->boolean('is_paid')->default(false);
             $table->timestamps();

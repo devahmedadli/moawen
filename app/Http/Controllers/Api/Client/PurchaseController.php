@@ -20,6 +20,12 @@ class PurchaseController extends Controller
     protected string $defaultSortOrder = 'desc';
 
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         try {
@@ -41,6 +47,13 @@ class PurchaseController extends Controller
     }
 
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show(Request $request, $id)
     {
         try {

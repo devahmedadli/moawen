@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Admin;
 
-use App\Models\FreelancerSkill;
-use App\Http\Requests\StoreFreelancerSkillRequest;
-use App\Http\Requests\UpdateFreelancerSkillRequest;
-
-class FreelancerSkillController extends Controller
+use App\Models\Chat;
+use App\Http\Requests\StoreChatRequest;
+use App\Http\Requests\UpdateChatRequest;
+use App\Http\Controllers\Controller;
+class ChatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class FreelancerSkillController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFreelancerSkillRequest $request)
+    public function store(StoreChatRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class FreelancerSkillController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(FreelancerSkill $freelancerSkill)
+    public function show(Chat $chat)
     {
         //
     }
@@ -43,7 +43,7 @@ class FreelancerSkillController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(FreelancerSkill $freelancerSkill)
+    public function edit(Chat $chat)
     {
         //
     }
@@ -51,7 +51,7 @@ class FreelancerSkillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFreelancerSkillRequest $request, FreelancerSkill $freelancerSkill)
+    public function update(UpdateChatRequest $request, Chat $chat)
     {
         //
     }
@@ -59,7 +59,7 @@ class FreelancerSkillController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FreelancerSkill $freelancerSkill)
+    public function destroy(Chat $chat)
     {
         //
     }

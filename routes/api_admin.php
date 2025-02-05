@@ -5,6 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('verify.token')->group(function () {
     Route::apiResource('users', \App\Http\Controllers\Api\Admin\UserController::class);
 });

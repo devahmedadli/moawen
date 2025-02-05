@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['verify.token'])->group(function () {
+Route::middleware(['user.freelancer','verify.token'])->group(function () {
 
     Route::get('/dashboard', \App\Http\Controllers\Api\Freelancer\DashboardController::class);
     Route::prefix('security')->group(function () {

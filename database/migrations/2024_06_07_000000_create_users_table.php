@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone')->nullable();
+            $table->decimal('balance', 10, 2)->default(0);
             $table->date('birthdate')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->integer('years_of_experience')->nullable();

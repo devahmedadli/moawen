@@ -13,6 +13,6 @@ class ActiveServiceScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('status', 'active');
+        $builder->where('status', 'published');
     }
 }

@@ -4,7 +4,6 @@ use App\Exceptions\Handler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
-use App\Http\Middleware\VerifyTokenIsValid;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -25,7 +24,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
 
         $middleware->alias([
-            'verify.token' => VerifyTokenIsValid::class,
+            'verify.token'      => App\Http\Middleware\VerifyTokenIsValid::class,
+            'user.client'       => App\Http\Middleware\IsClient::class,
+            'user.freelancer'   => App\Http\Middleware\IsFreelancer::class,
+            'user.admin'        => App\Http\Middleware\IsAdmin::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

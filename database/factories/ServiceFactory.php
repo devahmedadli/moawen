@@ -19,7 +19,7 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         $names = ['تطوير المواقع', 'تطوير تطبيقات الجوال', 'تصميم واجهات المستخدم', 'التسويق الرقمي', 'كتابة المحتوى', 'تحسين محركات البحث', 'التصميم الجرافيكي', 'مونتاج الفيديو', 'التعليق الصوتي', 'الترجمة'];
-        $users = User::where('role', 'freelancer')->get();
+        $users = User::ofType('freelancer')->get();
         $categories = Category::all();
         $paragraph = 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن استخدام "هنا يوجد محتوى نصي، هنا يوجد محتوى نصي" فتجعلها تبدو (أي الأحرف) وكأنها نص مقروء. العديد من برامح النشر المكتبي وبرامح تحرير صفحات الويب 
 
@@ -49,7 +49,7 @@ class ServiceFactory extends Factory
             'price'         => fake()->numberBetween(100, 1000),
             'delivery_time' => fake()->randomElement(['3 أيام - 10 أيام', '2 أيام - 3 أيام', '3 أيام - 4 أيام']),
             'thumbnail'     => 'https://placehold.co/640x480/png?text=' . fake()->randomElement($serviceImageKeywords),
-            'status'        => fake()->randomElement(['active', 'inactive']),
+            'status'        => fake()->randomElement(['pending', 'revision', 'approved', 'rejected', 'published', 'unpublished']),
             'average_rating' => fake()->randomElement([1, 2, 3.5, 4.7, 5, 2.5]),
             'views'         => fake()->numberBetween(0, 1000),
             'created_at'    => now(),

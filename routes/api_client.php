@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\PaymentController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('verify.token')->group(function () {
+Route::middleware(['user.client','verify.token'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\Api\Client\DashboardController::class);
     Route::prefix('security')->group(function () {
         Route::put('/update-password', [\App\Http\Controllers\Api\SecurityController::class, 'updatePassword']);
@@ -13,4 +14,12 @@ Route::middleware('verify.token')->group(function () {
     Route::apiResource('/purchases/reviews', \App\Http\Controllers\Api\Client\ReviewController::class)->except(['index', 'show']);
     Route::post('/offers/{id}/accept', [\App\Http\Controllers\Api\Client\OfferController::class, 'acceptOffer']);
     Route::post('/offers/{id}/reject', [\App\Http\Controllers\Api\Client\OfferController::class, 'rejectOffer']);
+
+    Route::post('/chats/start-chat', [\App\Http\Controllers\MessageController::class, 'firstMessage']);
+    Route::post('/chats/messages', [\App\Http\Controllers\MessageController::class, 'store']);
+    Route::apiResource('/chats', \App\Http\Controllers\Api\Client\ChatController::class);
+
+    // Payments
+
+    Route::post('charges/create-charge', [PaymentController::class, 'createCharge']);
 });
