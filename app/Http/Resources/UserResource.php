@@ -98,7 +98,7 @@ class UserResource extends JsonResource
             'gender'            => $this->when($showAllInfo || $this->existsInField($request, 'gender'), $this->gender),
             'years_of_experience' => $this->when($showAllInfo || $this->existsInField($request, 'years_of_experience'), $this->years_of_experience),
             'status'            => $this->when($showAllInfo || $this->existsInField($request, 'status'), $this->status),
-            'role'              => $this->when($showAllInfo || $this->existsInField($request, 'role'), $this->role),
+            'role'              => $this->when(request()->routeIs('me') || $showAllInfo || $this->existsInField($request, 'role'), $this->role),
             'is_2fa_enabled'    => $this->when($showAllInfo || $this->existsInField($request, 'is_2fa_enabled'), $this->is_2fa_enabled),
             'kyc_status'        => $this->when($showAllInfo || $this->existsInField($request, 'kyc_status'), $this->kyc_status),
             'last_login_at'     => $this->when($showAllInfo || $this->existsInField($request, 'last_login_at'), $this->last_login_at),
