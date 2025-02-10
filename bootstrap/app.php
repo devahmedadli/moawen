@@ -18,7 +18,6 @@ return Application::configure(basePath: dirname(__DIR__))
             Route::middleware('api')->prefix('api')->group(base_path('routes/auth.php')); // register auth routes
             Route::middleware('api')->prefix('api/freelancer')->group(base_path('routes/api_freelancer.php')); // register freelancer routes
             Route::middleware('api')->prefix('api/client')->group(base_path('routes/api_client.php')); // register user routes
-            Route::middleware('api')->prefix('api/admin')->group(base_path('routes/api_admin.php')); // register admin routes
         }
     )
     ->withMiddleware(function (Middleware $middleware) {

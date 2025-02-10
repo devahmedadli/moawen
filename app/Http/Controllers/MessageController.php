@@ -40,16 +40,12 @@ class MessageController extends Controller
             $chat = Chat::create([
                 'user_1_id' => auth()->user()->id,
                 'user_2_id' => $validated['to_user_id'],
-                'last_message_at' => now(),
+                'last_message_at' => null,
             ]);
-            $message = $chat->messages()->create([
-                'user_id'       => auth()->user()->id,
-                'body'          => $validated['body'],
-                'attachments'   => Message::handleAttachments($validated['attachments'] ?? null),
-            ]);
+            $message = new Message();
             DB::commit();
             broadcast(new NewMessage($chat, $message))->toOthers();
-            return $this->success(new ChatResource($chat), 'تم إرسال الرسالة بنجاح');
+            return $this->success(new ChatResource($chat), 'تم انشاء محادثة جديدة');
         } catch (\Exception $e) {
             DB::rollback();
             \Log::error($e->getMessage());

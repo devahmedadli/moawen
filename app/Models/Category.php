@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Traits\Filterable;
+use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
@@ -12,6 +14,12 @@ class Category extends Model
 
     protected $fillable = ['name', 'slug', 'icon', 'description'];
 
+    public function slug(): Attribute
+    {
+        return new Attribute(
+            set: fn($value) => Str::slug($value),
+        );
+    }
 
     public function services()
     {
@@ -27,7 +35,6 @@ class Category extends Model
     {
         return $this->hasManyThrough(User::class, Specialization::class)
             ->where('role', 'freelancer')
-            // ->has('skills')
             ->whereNotNull('bio')
             ->where('bio', '!=', '')
             ->whereNull('users.deleted_at');

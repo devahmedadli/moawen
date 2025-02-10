@@ -26,6 +26,7 @@ return new class extends Migration
             $table->enum('status', ['pending', 'revision', 'approved', 'rejected', 'published', 'unpublished'])->default('pending');
             $table->decimal('average_rating', 3, 1)->nullable();
             $table->integer('views')->unsigned()->default(0);
+            $table->longText('admin_notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -5,8 +5,9 @@ namespace App\Http\Requests\Api\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Http\Requests\BaseFormRequest;
 
-class UpdateServiceRequest extends FormRequest
+class UpdateServiceRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +24,6 @@ class UpdateServiceRequest extends FormRequest
      */
     public function rules(): array
     {
-        dd($this->all());
         return [
             'name'          => 'required|string|max:200',
             'description'   => 'required|string',
@@ -65,10 +65,4 @@ class UpdateServiceRequest extends FormRequest
         ];
     }
 
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(
-            apiResponse($validator->errors(), 'خطأ في التحقق من البيانات', 422)
-        );
-    }
 }

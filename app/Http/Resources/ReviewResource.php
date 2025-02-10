@@ -27,10 +27,10 @@ class ReviewResource extends JsonResource
             'order'   => $this->whenLoaded('order', fn() => [
                 'id'        => $this->order->id,
                 'price'     => $this->order->price,
-                'service'   => $this->whenLoaded('service', fn() => [
-                    'id'        => $this->order->service->id,
-                    'name'      => $this->order->service->name,
-                ]),
+            ]),
+            'service'   => $this->whenLoaded('service', fn() => [
+                'id'        => $this->order->service->id,
+                'name'      => $this->order->service->name,
             ]),
         ];
     }

@@ -30,9 +30,7 @@ class FirstMessageRequest extends BaseFormRequest
                     return;
                 }
             }],
-            'body'          => ['required', 'string'],
-            'attachments'   => ['nullable', 'array'],
-            'attachments.*' => ['nullable', 'file', 'mimes:jpeg,png,jpg,gif,pdf,doc,docx,xls,xlsx,ppt,pptx,zip,rar,7z'],
+
         ];
     }
 

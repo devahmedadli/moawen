@@ -9,7 +9,14 @@ use Illuminate\Support\Collection;
 
 trait HasQueryBuilder
 {
+    /**
+     * Build the query based on the request.
+     * @param Request $request
+     * @param Builder $query
+     * @return Builder
+     */
     protected function buildQuery(Request $request, Builder $query): Builder
+
     {
         $this->loadRelations($request, $query);
         $this->loadCounts($request, $query);
@@ -19,7 +26,14 @@ trait HasQueryBuilder
         return $query;
     }
 
+    /**
+     * Load the relations based on the request.
+     * @param Request $request
+     * @param Builder $query
+     * @return void
+     */
     protected function loadRelations(Request $request, Builder $query): void
+
     {
         $relations = $this->parseRelations($request->get('with'));
         if ($relations->isNotEmpty()) {
@@ -28,7 +42,14 @@ trait HasQueryBuilder
 
     }
 
+    /**
+     * Load the counts based on the request.
+     * @param Request $request
+     * @param Builder $query
+     * @return void
+     */
     protected function loadCounts(Request $request, Builder $query): void
+
     {
         $counts = $this->parseCounts($request->get('with_count'));
         if ($counts->isNotEmpty()) {
@@ -36,9 +57,15 @@ trait HasQueryBuilder
         }
     }
 
+    /**
+     * Parse the relations based on the request.
+     * @param string|null $relations
+     * @return Collection
+     */
     protected function parseRelations(?string $relations): Collection
     {
         if (empty($relations)) {
+
             return collect();
         }
 
@@ -53,6 +80,12 @@ trait HasQueryBuilder
             });
     }
 
+    /**
+     * Parse the counts based on the request.
+     * @param string|null $counts
+     * @return Collection
+     */
+
     protected function parseCounts(?string $counts): Collection
     {
         if (empty($counts)) {
@@ -66,9 +99,14 @@ trait HasQueryBuilder
             ->filter(fn($count) => $allowedCounts->contains($count));
     }
 
+    /**
+     * Get the allowed relations.
+     * @return Collection
+     */
     protected function getAllowedRelations(): Collection
     {
         if (!property_exists($this, 'allowedRelationships')) {
+
             return collect();
         }
 
@@ -80,7 +118,12 @@ trait HasQueryBuilder
             });
     }
 
+    /**
+     * Get the allowed counts.
+     * @return Collection
+     */
     protected function getAllowedCounts(): Collection
+
     {
         if (!property_exists($this, 'countableRelationships')) {
             return collect();
@@ -88,6 +131,13 @@ trait HasQueryBuilder
 
         return collect($this->countableRelationships);
     }
+
+    /**
+     * Apply the sorting based on the request.
+     * @param Request $request
+     * @param Builder $query
+     * @return void
+     */
 
     protected function applySorting(Request $request, Builder $query): void
     {
@@ -101,7 +151,13 @@ trait HasQueryBuilder
         $query->orderBy($sortBy, $sortOrder);
     }
 
+    /**
+     * Apply the default sorting based on the request.
+     * @param Builder $query
+     * @return void
+     */
     protected function applyDefaultSorting(Builder $query): void
+
     {
         if (property_exists($this, 'defaultSortField')) {
             $query->orderBy(
@@ -114,7 +170,14 @@ trait HasQueryBuilder
         $query->latest();
     }
 
+    /**
+     * Apply the filters based on the request.
+     * @param Request $request
+     * @param Builder $query
+     * @return void
+     */
     protected function applyFilters(Request $request, Builder $query): void
+
     {
         if ($request->query->count() > 0) {
             $query->filter($request->all());

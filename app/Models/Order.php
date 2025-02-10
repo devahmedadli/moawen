@@ -41,6 +41,11 @@ class Order extends Model
         return $this->hasOne(Review::class);
     }
 
+    public function payment()
+    {
+        return $this->morphOne(Transaction::class, 'transactionable');
+    }
+
     public function filterStatus($query, $value)
     {
         $statuses = explode(',', $value);
@@ -52,4 +57,8 @@ class Order extends Model
         return ['created_at', 'total_amount'];
     }
 
+    public function scopeWhereStatus($query, $status)
+    {
+        return $query->where('status', $status);
+    }
 }

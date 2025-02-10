@@ -44,15 +44,9 @@ class ReviewController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
+     * @param StoreReviewRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreReviewRequest $request)
     {
@@ -83,21 +77,27 @@ class ReviewController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Review $review)
+    public function show(Request $request, string $id)
     {
-        //
-    }
+        try {
+            $query = Review::query();
+            $query = $this->buildQuery($request, $query);
+            $review = $query->findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Review $review)
-    {
-        //
+            return $this->success(
+                new ReviewResource($review),
+                'تم جلب التقييم بنجاح',
+            );
+        } catch (\Exception $e) {
+            return $this->handleException($e);
+        }
     }
 
     /**
      * Update the specified resource in storage.
+     * @param UpdateReviewRequest $request
+     * @param Review $review
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpdateReviewRequest $request, Review $review)
     {
@@ -117,18 +117,27 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Review $review)
+    public function destroy(Request $request, string $id)
     {
-        $service = $review->service;
-        $review->delete();
+        try {
+            $query = Review::query();
+            $query = $this->buildQuery($request, $query);
+            $review = $query->findOrFail($id);
 
-        // Update service average rating
-        $service->average_rating = $service->reviews()->avg('rating');
-        $service->save();
+            $service = $review->service;
+            $review->delete();
 
-        return $this->success(
-            null,
-            'تم حذف التقييم بنجاح'
-        );
+            if ($service) {
+                $service->average_rating = $service->reviews()->avg('rating');
+                $service->save();
+            }
+
+            return $this->success(
+                null,
+                'تم حذف التقييم بنجاح'
+            );
+        } catch (\Exception $e) {
+            return $this->handleException($e);
+        }
     }
 }

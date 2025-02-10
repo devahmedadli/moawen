@@ -5,9 +5,12 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Traits\ApiResponse;
 
 class IsFreelancer
 {
+    use ApiResponse;
+
     /**
      * Handle an incoming request.
      *
@@ -18,7 +21,7 @@ class IsFreelancer
         if (auth()->user()->role != 'freelancer')
         {
             
-            return abort(401);
+            return $this->unauthorized();
         }
         return $next($request);
     }

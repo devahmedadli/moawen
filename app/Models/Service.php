@@ -40,9 +40,10 @@ class Service extends Model
 
     ];
 
-    protected static function booted(): void
+
+    public function scopeWhereStatus($query, $status)
     {
-        static::addGlobalScope(new ActiveServiceScope);
+        return $query->where('status', $status);
     }
 
     public function category()
@@ -89,7 +90,7 @@ class Service extends Model
             'price_min'     => 'sometimes|numeric|min:0',
             'price_max'     => 'sometimes|numeric|min:0',
             'created_at_range' => 'sometimes|string|in:last_hour,last_24_hours,last_7_days,last_14_days',
-            'status'        => 'sometimes|string|in:active,inactive',
+            'status'        => 'sometimes|string|in:pending,revision,approved,rejected,published,unpublished',
         ];
     }
 
@@ -144,7 +145,7 @@ class Service extends Model
     protected function filterStatus($query, $value): void
     {
         // Validate against allowed values
-        if (in_array($value, ['active', 'inactive'])) {
+        if (in_array($value, ['pending', 'revision', 'approved', 'rejected', 'published', 'unpublished'])) {
             $query->where('status', $value);
         }
     }

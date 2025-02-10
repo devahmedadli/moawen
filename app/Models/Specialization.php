@@ -9,7 +9,7 @@ use App\Traits\Filterable;
 class Specialization extends Model
 {
     use HasFactory, Filterable;
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'category_id'];
 
 
 

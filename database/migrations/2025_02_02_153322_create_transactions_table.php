@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('freelancer_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->decimal('amount', 10, 2);
             $table->enum('type', ['earning', 'withdrawal', 'refund', 'fee']);
             $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');

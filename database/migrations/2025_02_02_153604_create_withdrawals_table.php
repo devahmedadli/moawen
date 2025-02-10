@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('withdrawals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('freelancer_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->decimal('amount', 10, 2);
             $table->string('method'); // e.g., PayPal, Bank Transfer, etc.
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); // statuses: pending, approved, rejected
+            $table->enum('status', ['pending', 'approved', 'rejected', 'failed', 'cancelled', 'refunded', 'completed'])->default('pending'); // statuses: pending, approved, rejected, failed, cancelled, refunded, completed
             $table->mediumText('reason')->nullable();
+            $table->timestamps();
         });
     }
 

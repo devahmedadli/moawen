@@ -10,6 +10,7 @@ use Illuminate\Validation\ValidationException;
 use App\Http\Requests\Api\Admin\StoreServiceRequest;
 use App\Http\Requests\Api\Admin\UpdateServiceRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Http\Requests\Api\Admin\UpdateServiceStatusRequest;
 
 class ServiceController extends Controller
 {
@@ -31,6 +32,9 @@ class ServiceController extends Controller
 
     /**
      * Display a listing of the resource.
+     * 
+     * @param Request $request
+     * @return JsonResponse
      */
     public function index(Request $request)
     {
@@ -51,6 +55,9 @@ class ServiceController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * @param StoreServiceRequest $request
+     * @return JsonResponse
      */
     public function store(StoreServiceRequest $request)
     {
@@ -60,6 +67,10 @@ class ServiceController extends Controller
 
     /**
      * Display the specified resource.
+     * 
+     * @param Request $request
+     * @param string $id
+     * @return JsonResponse
      */
     public function show(Request $request, string $id)
     {
@@ -103,6 +114,10 @@ class ServiceController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * 
+     * @param UpdateServiceRequest $request
+     * @param string $id
+     * @return JsonResponse
      */
     public function update(UpdateServiceRequest $request, string $id)
     {
@@ -116,7 +131,30 @@ class ServiceController extends Controller
     }
 
     /**
+     * Update the status of the specified resource.
+     * 
+     * @param UpdateServiceStatusRequest $request
+     * @param string $id
+     * @return JsonResponse
+     */
+    public function updateStatus(UpdateServiceStatusRequest $request, string $id)
+    {
+        try {
+            $validated = $request->validated();
+            $validated['admin_notes'] = $request->admin_notes ?? null;
+            $service = Service::findOrFail($id);
+            $service->update($validated);
+            return $this->success(new ServiceResource($service), 'تم تعديل حالة الخدمة بنجاح');
+        } catch (\Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
+     * 
+     * @param string $id
+     * @return JsonResponse
      */
     public function destroy(string $id)
     {

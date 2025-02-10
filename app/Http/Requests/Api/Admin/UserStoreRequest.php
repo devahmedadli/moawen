@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests\Api\Admin;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserStoreRequest extends FormRequest
+class UserStoreRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -53,15 +53,4 @@ class UserStoreRequest extends FormRequest
         ];
     }
 
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(
-            apiResponse(
-                $validator->errors(),
-                'خطأ في التحقق من البيانات',
-                422,
-                
-            )
-        );
-    }
 }

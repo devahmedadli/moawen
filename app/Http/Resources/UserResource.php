@@ -103,8 +103,7 @@ class UserResource extends JsonResource
             'kyc_status'        => $this->when($showAllInfo || $this->existsInField($request, 'kyc_status'), $this->kyc_status),
             'last_login_at'     => $this->when($showAllInfo || $this->existsInField($request, 'last_login_at'), $this->last_login_at),
             'last_login_ip'     => $this->when($showAllInfo, $this->last_login_ip),
-
-
+            'balance'           => $this->when($showAllInfo || $this->existsInField($request, 'balance'), $this->balance),
             // Basic information
             'bio'               => $this->when($showAllInfo || $this->existsInField($request, 'bio'), $this->bio),
             'country'           => $this->when($showAllInfo || $this->existsInField($request, 'country'), $this->country),

@@ -23,9 +23,14 @@ trait Filterable
         ];
     }
 
+    /**
+     * Get the validation rules for the filters.
+     * @return array
+     */
     protected function filterValidationRules(): array
     {
         return array_merge(
+
             [
                 'sortBy'    => 'sometimes|string|in:' . implode(',', $this->getAllowedSortFields()),
                 'sortOrder' => 'sometimes|string|in:asc,desc',
@@ -35,6 +40,11 @@ trait Filterable
         );
     }
 
+    /**
+     * Get the custom validation rules for the filters.
+     * @return array
+     */
+
     protected function getCustomFilterValidationRules(): array
     {
         return [];
@@ -43,6 +53,7 @@ trait Filterable
     /**
      * Get allowed sort fields
      * Override this in your model to customize
+     * @return array
      */
     protected function getAllowedSortFields(): array
     {
@@ -51,8 +62,12 @@ trait Filterable
 
     /**
      * Apply filters to the query builder
+     * @param Builder $query
+     * @param array $filters
+     * @return Builder
      */
     public function scopeFilter(Builder $query, array $filters)
+
     {
         try {
 
@@ -103,8 +118,11 @@ trait Filterable
     /**
      * Check if the field is valid for filtering
      * Override this in your model to customize
+     * @param string $field
+     * @return bool
      */
     protected function isValidField(string $field): bool
+
     {
         // Stricter field validation
         return in_array($field, $this->getFillable(), true) &&

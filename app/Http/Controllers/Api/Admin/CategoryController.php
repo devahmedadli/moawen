@@ -27,6 +27,11 @@ class CategoryController extends Controller
         'freelancers'
     ];
 
+    /**
+     * Display a listing of the resource.
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         try {
@@ -45,27 +50,28 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created category
-     * 
-     * Create a new category in the system.
-     *
-     * @bodyParam name string required The name of the category. Example: البرمجة والتطوير
+     * Store a newly created resource in storage.
+     * @param StoreCategoryRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreCategoryRequest $request)
     {
-        $category = Category::create($request->validated());
-        return $this->success(
-            new CategoryResource($category),
-            'تم اضافة القسم بنجاح',
-        );
+        try {
+            $category = Category::create($request->validated());
+            return $this->success(
+                new CategoryResource($category),
+                'تم اضافة القسم بنجاح',
+            );
+        } catch (\Exception $e) {
+            return $this->handleException($e);
+        }
     }
 
     /**
-     * Display the specified category
-     * 
-     * Get the details of a specific category.
-     *
-     * @urlParam id required The ID of the category. Example: 1
+     * Display the specified resource.
+     * @param Request $request
+     * @param string $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Request $request, string $id)
     {
@@ -84,22 +90,28 @@ class CategoryController extends Controller
 
 
     /**
-     * Update the specified category
-     * 
-     * Update the details of a specific category.
-     *
-     * @bodyParam name string required The name of the category. Example: البرمجة والتطوير
+     * Update the specified resource in storage.
+     * @param UpdateCategoryRequest $request
+     * @param Category $category
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, string $id)
     {
-        $category->update($request->validated());
-        return apiResponse(new CategoryResource($category), 'تم تعديل القسم بنجاح', 200);
+        try {
+            $category = Category::findOrFail($id);
+            $category->update($request->validated());
+            return $this->success(
+                new CategoryResource($category),
+                'تم تعديل القسم بنجاح',
+            );
+        } catch (\Exception $e) {
+            return $this->handleException($e);
+        }
     }
-
     /**
-     * Remove the specified category
-     * 
-     * Delete a specific category from the system.
+     * Remove the specified resource from storage.
+     * @param string $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(string $id)
     {

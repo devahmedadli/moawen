@@ -16,13 +16,6 @@ class Review extends Model
         'comment',
     ];
 
-    // public function service()
-    // {
-    //     return $this->belongsTo(Service::class, 'order_id')
-    //         ->join('orders', 'orders.id', '=', 'reviews.order_id')
-    //         ->join('services', 'services.id', '=', 'orders.service_id')
-    //         ->withTrashed();
-    // }
 
     public function user()
     {
@@ -32,5 +25,10 @@ class Review extends Model
     public function order()
     {
         return $this->belongsTo(Order::class);
+    }
+
+    public function service()
+    {
+        return $this->hasOneThrough(Service::class, Order::class, 'id', 'id', 'id', 'service_id');
     }
 }

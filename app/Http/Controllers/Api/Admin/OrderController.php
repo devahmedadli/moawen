@@ -17,14 +17,12 @@ use App\Http\Requests\UpdateOrderRequest;
 class OrderController extends Controller
 {
     protected array $allowedRelationships = [
-        'services',
-        'services.category',
-        'reviews',
-    ];
-
-    protected array $countableRelationships = [
-        'reviews',
-
+        'service',
+        'service.category',
+        'review',
+        'client',
+        'freelancer',
+        'payment',
     ];
 
     protected string $defaultSortField = 'created_at';
@@ -50,12 +48,16 @@ class OrderController extends Controller
 
     public function store(StoreOrderRequest $request)
     {
-        $order = Order::create($request->validated());
+        try {
+            $order = Order::create($request->validated());
 
         return $this->success(
             new OrderResource($order),
-            'تم إنشاء الطلب بنجاح',
-        );
+                'تم إنشاء الطلب بنجاح',
+            );
+        } catch (\Exception $e) {
+            return $this->handleException($e);
+        }
     }
 
     /**
@@ -79,14 +81,19 @@ class OrderController extends Controller
     /**
      * Update the specified order
      */
-    public function update(UpdateOrderRequest $request, Order $order)
+    public function update(UpdateOrderRequest $request, string $id)
     {
-        $order->update($request->validated());
+        try {
+            $order = Order::findOrFail($id);
+            $order->update($request->validated());
 
         return $this->success(
             new OrderResource($order),
-            'تم تحديث الطلب بنجاح'
-        );
+                'تم تحديث الطلب بنجاح'
+            );
+        } catch (\Exception $e) {
+            return $this->handleException($e);
+        }
     }
 
     /**

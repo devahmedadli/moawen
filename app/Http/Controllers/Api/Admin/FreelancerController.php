@@ -38,7 +38,18 @@ class FreelancerController extends Controller
     protected string $defaultSortField = 'created_at';
     protected string $defaultSortOrder = 'desc';
 
-
+    /**
+     * Display a listing of the resource.
+     * @param Request $request
+     * @queryParam per_page int The number of items per page.
+     * @queryParam page int The page number.
+     * @queryParam sort_by string The field to sort by.
+     * @queryParam sort_order string The order to sort by.
+     * @queryParam search string The search query.
+     * @queryParam filters array The filters to apply.
+     * @queryParam with[] string The relationships to include.
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         try {
@@ -56,13 +67,16 @@ class FreelancerController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     * @param StoreFreelancerRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(StoreFreelancerRequest $request)
     {
         try {
             $validated = $request->validated();
 
-            // dd([...$validated,
-            //     'role' => 'freelancer']);
             $freelancer = User::create([
                 ...$validated,
                 'username'  => '',
@@ -82,6 +96,9 @@ class FreelancerController extends Controller
 
     /**
      * Display the specified resource.
+     * @param Request $request
+     * @param string $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Request $request, string $id)
     {
@@ -103,6 +120,9 @@ class FreelancerController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @param Request $request
+     * @param string $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, string $id)
     {
@@ -124,6 +144,8 @@ class FreelancerController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param string $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(string $id)
     {
