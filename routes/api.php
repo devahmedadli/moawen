@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware(['user.admin', 'verify.token'])->group(function () {
+Route::middleware(['verify.token'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\Api\Admin\DashboardController::class);
-
     Route::apiResource('freelancers', \App\Http\Controllers\Api\Admin\FreelancerController::class);
     Route::apiResource('clients', \App\Http\Controllers\Api\Admin\ClientController::class);
     Route::apiResource('categories', \App\Http\Controllers\Api\Admin\CategoryController::class);
