@@ -56,6 +56,30 @@ class UserResource extends JsonResource
 
     ];
 
+
+    /**
+     * Transform the resource into an array.
+     *
+     * @param Request $request
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        // Get parameters using the whitelist approach
+        $showAllInfo = $this->getQueryParam($request, 'all_info');
+
+        $adminData = [];
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            $adminData = $this->adminData($request, $showAllInfo);
+        }
+
+        return [
+            ...$this->publicData($request, $showAllInfo),
+            ...$adminData,
+        ];
+    }
+
+
     /**
      * Safely get a query parameter value
      *
@@ -72,18 +96,13 @@ class UserResource extends JsonResource
     }
 
     /**
-     * Transform the resource into an array.
+     * Get public data
      *
-     * @param Request $request
-     * @return array<string, mixed>
+     * @return array
      */
-    public function toArray(Request $request): array
+    private function publicData(Request $request, bool $showAllInfo = false): array
     {
-        // Get parameters using the whitelist approach
-        $showAllInfo = $this->getQueryParam($request, 'all_info');
-
         return [
-            // Always visible fields
             'id'                => $this->id,
             'first_name'        => $this->first_name,
             'last_name'         => $this->last_name,
@@ -91,6 +110,45 @@ class UserResource extends JsonResource
             'username'          => $this->username,
             'image'             => $this->image,
             'average_rating'    => (float) number_format((float) $this->average_rating, 1, '.', ''),
+            // Basic information
+            'bio'               => $this->when($showAllInfo || $this->existsInField($request, 'bio'), $this->bio),
+            'country'           => $this->when($showAllInfo || $this->existsInField($request, 'country'), $this->country),
+            'account_level'     => $this->when($showAllInfo || $this->existsInField($request, 'account_level'), $this->account_level),
+
+            'skills' => $this->when($showAllInfo || $this->existsInField($request, 'skills'), json_decode($this->skills)),
+
+            'experience_timeline' => UserExperienceTimelineResource::collection($this->whenLoaded('experienceTimeline')),
+
+            'services' => ServiceResource::collection($this->whenLoaded('services')),
+
+            'reviews' => ReviewResource::collection($this->whenLoaded('reviews')),
+            // Counts (loaded only when requested)
+            'services_count' => $this->whenCounted('services', fn() => $this->services_count),
+
+            'reviews_count' => $this->whenCounted('reviews', fn() => $this->reviews_count),
+
+            'orders_count' => $this->whenCounted('orders', function () {
+                return collect([
+                    'total'         => (int) $this->orders_count,
+                    'pending'       => (int) $this->orders->where('status', 'pending')->count(),
+                    'in_progress'   => (int) $this->orders->where('status', 'in_progress')->count(),
+                    'completed'     => (int) $this->orders->where('status', 'completed')->count(),
+                    'canceled'      => (int) $this->orders->where('status', 'canceled')->count(),
+                ]);
+            }),
+            'purchases_count' => $this->whenCounted('purchases', fn() => $this->purchases_count),
+
+        ];
+    }
+
+    /**
+     * Get admin data
+     *
+     * @return array
+     */
+    private function adminData(Request $request, bool $showAllInfo = false): array
+    {
+        return [
             // Sensitive information (requires all_info)
             'email'             => $this->when($showAllInfo || $this->existsInField($request, 'email'), $this->email),
             'phone'             => $this->when($showAllInfo || $this->existsInField($request, 'phone'), $this->phone),
@@ -105,39 +163,12 @@ class UserResource extends JsonResource
             'last_login_ip'     => $this->when($showAllInfo, $this->last_login_ip),
             'balance'           => $this->when($showAllInfo || $this->existsInField($request, 'balance'), $this->balance),
             // Basic information
-            'bio'               => $this->when($showAllInfo || $this->existsInField($request, 'bio'), $this->bio),
-            'country'           => $this->when($showAllInfo || $this->existsInField($request, 'country'), $this->country),
-            'account_level'     => $this->when($showAllInfo || $this->existsInField($request, 'account_level'), $this->account_level),
             'created_at'        => $this->when($showAllInfo || $this->existsInField($request, 'created_at'), $this->created_at),
             'updated_at'        => $this->when($showAllInfo || $this->existsInField($request, 'updated_at'), $this->updated_at),
-
-            'skills' => $this->when($showAllInfo || $this->existsInField($request, 'skills'), json_decode($this->skills)),
-            // Related resources (loaded only when requested)
-
-            'experience_timeline' => UserExperienceTimelineResource::collection($this->whenLoaded('experienceTimeline')),
-
-            'services' => ServiceResource::collection($this->whenLoaded('services')),
 
             'orders' => OrderResource::collection($this->whenLoaded('orders')),
 
             'purchases' => OrderResource::collection($this->whenLoaded('purchases')),
-
-            'reviews' => ReviewResource::collection($this->whenLoaded('reviews')),
-
-            // Counts (loaded only when requested)
-            'services_count' => $this->whenCounted('services', fn() => $this->services_count),
-            'reviews_count' => $this->whenCounted('reviews', fn() => $this->reviews_count),
-
-            'orders_count' => $this->whenCounted('orders', function () {
-                return collect([
-                    'total'         => (int) $this->orders_count,
-                    'pending'       => (int) $this->orders->where('status', 'pending')->count(),
-                    'in_progress'   => (int) $this->orders->where('status', 'in_progress')->count(),
-                    'completed'     => (int) $this->orders->where('status', 'completed')->count(),
-                    'canceled'      => (int) $this->orders->where('status', 'canceled')->count(),
-                ]);
-            }),
-            'purchases_count' => $this->whenCounted('purchases', fn() => $this->purchases_count),
         ];
     }
 }

@@ -41,6 +41,9 @@ class ServiceController extends Controller
         try {
             $query = Service::query();
             $query = $this->buildQuery($request, $query);
+            if (!auth()->check() || auth()->user()->role !== 'admin') {
+                $query->whereIn('status', ['approved', 'published']);
+            }
             $services = $query->paginate($request->get('per_page', 25));
 
             return $this->success(
@@ -80,7 +83,7 @@ class ServiceController extends Controller
             $this->trackServiceView($service);
 
             return $this->success(
-                new ServiceResource($service), 
+                new ServiceResource($service),
                 'تم جلب الخدمة بنجاح'
             );
         } catch (\Exception $e) {
@@ -104,7 +107,7 @@ class ServiceController extends Controller
         // Get IP address and create a unique key combining IP and service ID
         $ip = request()->ip();
         $viewKey = "service_view_{$service->id}_{$ip}";
-        
+
         // Use cache instead of session for API
         if (!cache()->has($viewKey)) {
             cache([$viewKey => now()], now()->addDay());
