@@ -18,12 +18,15 @@ class NewMessage implements ShouldBroadcastNow, ShouldDispatchAfterCommit
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public Chat $chat;
+    public Message $message;
     /**
      * Create a new event instance.
      */
-    public function __construct(public Chat $chat, public Message $message)
+    public function __construct(Chat $chat, Message $message)
     {
-        //
+        $this->chat = $chat;
+        $this->message = $message;
     }
 
     /**

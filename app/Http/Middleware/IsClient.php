@@ -18,7 +18,7 @@ class IsClient
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role != 'client')
+        if (auth()->check() && auth()->user()->role != 'client')
         {
             
             return $this->unauthorized();

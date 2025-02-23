@@ -18,7 +18,7 @@ class IsFreelancer
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role != 'freelancer')
+        if (auth()->check() && auth()->user()->role != 'freelancer')
         {
             
             return $this->unauthorized();
