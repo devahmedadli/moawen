@@ -7,6 +7,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -15,9 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
         then: function () {
-            Route::middleware('api')->prefix('api')->group(base_path('routes/auth.php')); // register auth routes
-            Route::middleware('api')->prefix('api/freelancer')->group(base_path('routes/api_freelancer.php')); // register freelancer routes
-            Route::middleware('api')->prefix('api/client')->group(base_path('routes/api_client.php')); // register user routes
+            Route::middleware('api')->prefix('api')->name('admin.')->group(base_path('routes/auth.php')); // register auth routes
+            Route::middleware('api')->prefix('api/freelancer')->name('freelancer.')->group(base_path('routes/api_freelancer.php')); // register freelancer routes
+            Route::middleware('api')->prefix('api/client')->name('client.')->group(base_path('routes/api_client.php')); // register user routes
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
@@ -33,12 +34,13 @@ return Application::configure(basePath: dirname(__DIR__))
         // $exceptions->render(function (Handler $handler){
         //     return $handler->register();
         // });
-        $exceptions->render(function (ModelNotFoundException $e, Request $request) {
+        $exceptions->render(function (NotFoundHttpException $e, Request $request) {
             if ($request->is('api/*')) {
-                dd($e);
                 return response()->json([
-                    'message' => 'Record not found.'
-                ], 400);
+                    'success' => false,
+                    'message' => 'غير موجود',
+                    'data' => null
+                ], 404);
             }
         });
     })->create();

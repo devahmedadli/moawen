@@ -18,26 +18,13 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
-    /**
-     * Register the exception handling callbacks for the application.
-     */
-    public function register(): void
-    {
-        $this->reportable(function (Throwable $e) {
-            Log::error('Exception occurred:', [
-                'message' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
-                'trace' => $e->getTraceAsString()
-            ]);
-        });
 
-        $this->renderable(function (Throwable $e, Request $request) {
-            if ($request->is('api/*') || $request->expectsJson()) {
-                return response()->view('errors.invalid-order', [], 500);
-                return $this->handleApiException($e, $request);
-            }
-        });
+        /**
+     * Render the exception into an HTTP response.
+     */
+    public function render($request, Throwable $e)
+    {
+        return $this->handleApiException($e, $request);
     }
 
     /**

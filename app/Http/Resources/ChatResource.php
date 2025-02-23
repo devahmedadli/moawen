@@ -25,8 +25,7 @@ class ChatResource extends JsonResource
             'last_message_at' => $this->last_message_at,
             'messages'  => $this->when($request->all_messages == 'true', function () {
                 return MessageResource::collection($this->messages);
-            })
-            
+            }),
         ];
     }
 }

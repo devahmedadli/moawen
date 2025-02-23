@@ -25,11 +25,12 @@ class MessageController extends Controller
      */
     public function firstMessage(FirstMessageRequest $request)
     {
-        if ($chat = Chat::whereIn('user_1_id', [auth()->user()->id, $request->to_user_id])->whereIn('user_2_id', [auth()->user()->id, $request->to_user_id])->first()) {
-            return $this->error(
+        $user = auth()->user();
+        if ($chat = Chat::whereIn('user_1_id', [$user->id, $request->to_user_id])->whereIn('user_2_id', [$user->id, $request->to_user_id])->first()) {
+            return $this->success(
+                null,
                 'يوجد محادثة بينك وبين هذا المستخدم من قبل',
-                400,
-                '',
+                200,
                 ['chat_id' => $chat->id]
             );
         }
@@ -38,7 +39,7 @@ class MessageController extends Controller
             $validated = $request->validated();
             DB::beginTransaction();
             $chat = Chat::create([
-                'user_1_id' => auth()->user()->id,
+                'user_1_id' => $user->id,
                 'user_2_id' => $validated['to_user_id'],
                 'last_message_at' => null,
             ]);
