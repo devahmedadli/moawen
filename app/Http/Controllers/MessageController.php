@@ -28,10 +28,10 @@ class MessageController extends Controller
         $user = auth()->user();
         if ($chat = Chat::whereIn('user_1_id', [$user->id, $request->to_user_id])->whereIn('user_2_id', [$user->id, $request->to_user_id])->first()) {
             return $this->success(
-                null,
+                ['id' => $chat->id],
                 'يوجد محادثة بينك وبين هذا المستخدم من قبل',
                 200,
-                ['id' => $chat->id]
+                
             );
         }
 
