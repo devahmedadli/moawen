@@ -31,7 +31,7 @@ class MessageController extends Controller
                 null,
                 'يوجد محادثة بينك وبين هذا المستخدم من قبل',
                 200,
-                ['chat_id' => $chat->id]
+                ['id' => $chat->id]
             );
         }
 
