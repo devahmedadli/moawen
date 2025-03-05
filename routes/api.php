@@ -9,7 +9,9 @@ Route::apiResource('categories', \App\Http\Controllers\Api\Admin\CategoryControl
 Route::apiResource('specializations', \App\Http\Controllers\Api\Admin\SpecializationController::class)->only(['index', 'show']);
 Route::apiResource('services', \App\Http\Controllers\Api\Admin\ServiceController::class)->only(['index', 'show']);
 Route::apiResource('posts', \App\Http\Controllers\Api\Admin\PostController::class)->only(['index', 'show']);
-
+Route::get('attachments/{attachment}/download', [\App\Http\Controllers\AttachmentController::class, 'download'])
+    ->name('attachments.download')
+    ->middleware('verify.token');
 // Protected admin routes
 Route::middleware('user.admin', 'verify.token')->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\Api\Admin\DashboardController::class);

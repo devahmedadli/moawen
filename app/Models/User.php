@@ -277,4 +277,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Chat::class, 'from_id')->orWhere('to_id', $this->id);
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }

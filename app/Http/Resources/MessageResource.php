@@ -15,12 +15,13 @@ class MessageResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'    => $this->id,
-            'body'  => $this->body,
-            'seen'  => $this->seen,
-            'user_id' => $this->user_id,
-            'attachments' => $this->attachments,
-            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'chat_id'       => $this->chat_id,
+            'id'            => $this->id,
+            'body'          => $this->body,
+            'seen'          => $this->seen,
+            'user_id'       => $this->user_id,
+            'attachments'   => AttachmentResource::collection($this->attachments),
+            'created_at'    => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }
 }

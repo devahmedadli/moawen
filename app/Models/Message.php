@@ -10,26 +10,20 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['chat_id', 'user_id', 'body', 'seen', 'attachments'];
-
+    protected $fillable = ['chat_id', 'user_id', 'body', 'seen'];
     /**
-     * Get the attributes that should be cast.
+     * The relationships that should always be loaded.
      *
-     * @return array<string, string>
+     * @var array
      */
-    protected function casts(): array
-    {
-        return [
-            'attachments' => 'array',
-        ];
-    }
-
+    // protected $with = ['attachments'];
+    
     protected static function boot()
     {
         parent::boot();
-        // static::creating(function ($model) {
-        //     $model->id = Str::uuid()->toString();
-        // });
+        static::addGlobalScope('attachments', function ($query) {
+            $query->with('attachments');
+        });
     }
 
     public function chat()
@@ -37,28 +31,11 @@ class Message extends Model
         return $this->belongsTo(Chat::class);
     }
 
-    /**
-     * Handle attachments
-     *
-     * @param array $attachments
-     * @return array
-     */
-    public static function handleAttachments($attachments)
+    public function attachments()
     {
-        if (empty($attachments)) {
-            return [];
-        }
-        $handledAttachments = [];
-        foreach ($attachments as $attachment) {
-            $handledAttachments[] = [
-                'path' => $attachment->storeAs('attachments', uuid_create() . '.' . $attachment->getClientOriginalExtension()),
-                'type' => $attachment->getClientOriginalExtension(),
-                'size' => $attachment->getSize(),
-                'name' => $attachment->getClientOriginalName(),
-            ];
-        }
-        return $handledAttachments;
+        return $this->morphMany(Attachment::class, 'attachmentable');
     }
+
 
     public function user()
     {

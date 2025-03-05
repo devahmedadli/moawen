@@ -44,8 +44,9 @@ class ChatController extends Controller
      */
     public function show($id)
     {
-        $chat = Chat::findOrFail($id);
+        $chat = Chat::with('messages')->findOrFail($id);
         if (!$chat) {
+
             return $this->error('المحادثة غير موجودة', 404);
         }
         if (!in_array(auth()->user()->id, [$chat->user_1_id, $chat->user_2_id])) {

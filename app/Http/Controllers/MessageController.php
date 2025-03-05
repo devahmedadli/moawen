@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\NewMessage;
 use App\Models\Chat;
 use App\Models\Message;
+use App\Events\NewMessage;
+use App\Models\Attachment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\ChatResource;
-use App\Http\Requests\Api\StoreMessageRequest;
+use App\Http\Resources\MessageResource;
+use App\Http\Resources\AttachmentResource;
 use App\Http\Requests\Api\FirstMessageRequest;
+use App\Http\Requests\Api\StoreMessageRequest;
 
 class MessageController extends Controller
 {
@@ -64,17 +67,31 @@ class MessageController extends Controller
     {
         $chat = Chat::findOrFail($request->chat_id);
         $validated = $request->validated();
-        $validated['attachments']   = Message::handleAttachments($request->attachments);
-        $validated['user_id']       = auth()->user()->id;
+        
         if (!in_array(auth()->user()->id, [$chat->user_1_id, $chat->user_2_id])) {
             return $this->error('ليس لديك الصلاحية لإرسال الرسائل في هذه المحادثة', 403);
         }
 
         try {
+            DB::beginTransaction();
+            
+            // Create message first
+            $validated['user_id'] = auth()->user()->id;
             $message = $chat->messages()->create($validated);
+
+            // Handle and create attachments if any
+            if ($request->hasFile('attachments')) {
+                $attachmentsData = Attachment::handleAttachments($request->attachments);
+                foreach ($attachmentsData as $attachmentData) {
+                    $message->attachments()->create($attachmentData);
+                }
+            }
+            
+            DB::commit();
             broadcast(new NewMessage($chat, $message))->toOthers();
-            return $this->success($message, 'تم إرسال الرسالة بنجاح');
+            return $this->success(new MessageResource($message), 'تم إرسال الرسالة بنجاح');
         } catch (\Exception $e) {
+            DB::rollback();
             return $this->handleException($e);
         }
     }

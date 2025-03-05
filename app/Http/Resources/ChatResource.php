@@ -16,7 +16,7 @@ class ChatResource extends JsonResource
     {
         $chatWith = $this->user_1_id == auth()->user()->id ? $this->user2 : $this->user1;
         return [
-            'id'        => $this->id,
+            // 'id'        => $this->id,
             'chat_with' => [
                 'id'    => $chatWith->id,
                 'name'  => $chatWith->full_name,
