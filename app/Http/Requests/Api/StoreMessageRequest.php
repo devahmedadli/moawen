@@ -34,8 +34,8 @@ class StoreMessageRequest extends BaseFormRequest
                 }
             }],
             // 'user_id'           => 
-            'body'              => ['required', 'string'],
-            'attachments'       => ['nullable', 'array'],
+            'body'              => ['nullable', 'string', 'required_without:attachments'],
+            'attachments'       => ['nullable', 'array', 'required_without:body'],
             'attachments.*'     => ['nullable', 'file', 'mimes:jpeg,png,jpg,gif,pdf,doc,docx,xls,xlsx,ppt,pptx,zip,rar,7z'],
         ];
     }
@@ -46,8 +46,9 @@ class StoreMessageRequest extends BaseFormRequest
             'chat_id.required'      => 'حدث خطأ ما',
             'chat_id.exists'        => 'المحادثة غير موجودة',
             'chat_id.not_allowed'   => 'ليس لديك الصلاحية لإرسال الرسائل في هذه المحادثة',
-            'body.required'         => 'يجب أن تقوم بإرسال الرسالة',
+            'body.required_without'     => 'يجب إدخال نص الرسالة أو إرفاق ملف',
             'body.string'           => 'يجب أن تكون الرسالة عبارة عن نص',
+            'attachments.required_without' => 'يجب إدخال نص الرسالة أو إرفاق ملف',
             'attachments.*.file'    => 'يجب أن يكون الملف من نوع صورة أو ملف',
             'attachments.*.mimes'   => 'صيغة الملف غير مدعومة',
         ];
