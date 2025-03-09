@@ -6,6 +6,7 @@ use App\Models\Chat;
 use App\Models\Message;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
+use App\Http\Resources\AttachmentResource;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -58,7 +59,13 @@ class NewMessage implements ShouldBroadcastNow, ShouldDispatchAfterCommit
     public function broadcastWith(): array
     {
         return [
-            'message' => $this->message,
+            'chat_id'       => $this->message->chat_id,
+            'id'            => $this->message->id,
+            'body'          => $this->message->body,
+            'seen'          => $this->message->seen,
+            'user_id'       => $this->message->user_id,
+            'attachments'   => AttachmentResource::collection($this->message->attachments),
+            'created_at'    => $this->message->created_at->format('Y-m-d H:i:s'),
         ];
     }
 }
